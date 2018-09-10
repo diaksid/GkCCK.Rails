@@ -1,0 +1,45 @@
+.banner {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+
+  &.img-thumbnail {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  &__frame {
+    display: inline-block;
+    transition: all .4s ease-in-out;
+    will-change: transform;
+  }
+
+  &__title {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 16px;
+    color: $gray-100;
+    font-size: 13px;
+    font-weight: 500;
+    background: rgba(0, 0, 0, .2);
+    transition: all .4s;
+    will-change: background-color;
+  }
+
+  &:hover {
+    .banner__frame {
+      transform: scale(1.05);
+    }
+    .banner__title {
+      background: rgba(0, 0, 0, .5);
+    }
+  }
+}
+
+a.banner.img-thumbnail:hover {
+  border-color: $link-hover-color;
+}

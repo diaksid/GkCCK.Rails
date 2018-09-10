@@ -1,0 +1,29 @@
+.catalog {
+  &__body,
+  &__body > .container {
+    display: flex;
+  }
+
+  &__body:not(:last-child) {
+    margin-bottom: 4vh;
+  }
+
+  &__figure {
+    .banner {
+      display: flex;
+    }
+  }
+
+  &__figure + &__content,
+  &__content + &__figure {
+    margin-left: 4vw;
+  }
+
+  &--striped {
+    .catalog__body:nth-child(2n) {
+      padding-top: 3vh;
+      padding-bottom: 3vh;
+      background: rgba(247, 247, 249, .3);
+    }
+  }
+}

@@ -1,0 +1,29 @@
+- cache do
+  = csrf_meta_tags
+  = csp_meta_tag
+  /= action_cable_meta_tag
+
+  = js_events_script_tag
+
+  link[
+    rel='stylesheet'
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'
+    data-turbolinks-track='reload'
+    ]
+
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+  = javascript_include_tag 'application', asinc: true, defer: true, 'data-turbolinks-track': 'reload'
+
+  /[if lt IE 9]
+    script[
+      src='/javascripts/html5bility.min.js'
+      data-turbolinks-track='reload'
+      ]
+  /[if lt IE 11]
+    script[
+      src='/javascripts/flexibility.min.js'
+      data-turbolinks-track='reload'
+      ]
+
+  = yandex_metrika_script_tag

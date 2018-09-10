@@ -1,0 +1,48 @@
+---
+ru:
+  targets:
+    index:
+      label: "Объекты"
+      title: "Объекты"
+      description: "Объекты группы компаний «ССК»"
+      header: "Объекты ГК «ССК»"
+
+  activerecord:
+    models:
+      target:
+        one: "Объект"
+        few: "Объекта"
+        many: "Объектов"
+        other: "Объекты"
+    attributes:
+      target:
+        published: "Опубликовано"
+        navigated: "Навигация"
+        importance: "Значимость"
+        start_at: "Начало"
+        finish_at: "Окончание"
+        name: "Название"
+        header: "Заголовок"
+        content: "Описание"
+        address: "Адрес"
+        geo: "Геокоординаты"
+        website: "Сайт"
+        index: "Индекс"
+        created_at: "Создано"
+        updated_at: "Изменено"
+        partner: "Заказчик"
+        partner_as: "&nbsp;"
+        areas: "Области деятельности"
+        images: "Изображения"
+        images_purge: "Очистить"
+        image: "Баннер"
+
+  active_admin:
+    scopes:
+      individual: "Без заказчика"
+      weight: "Значимость"
+    panels:
+      activity: "Деятельность"
+    local:
+      targets: "Объекты (%{count})"
+...

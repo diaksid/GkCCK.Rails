@@ -1,0 +1,23 @@
+.pro-header--contact {
+  .header {
+    &__title {
+      display: inline-block;
+      z-index: 1;
+      padding-top: 0;
+      padding-right: 0;
+      width: auto;
+      color: rgba(160, 160, 160, .5);
+    }
+
+    &__preload {
+      z-index: 0;
+      background-size: 7.5%;
+    }
+  }
+}
+
+#form-contact {
+  .icon-exclamation-circle {
+    color: #acc;
+  }
+}

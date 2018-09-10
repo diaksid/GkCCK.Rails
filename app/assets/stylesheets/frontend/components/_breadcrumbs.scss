@@ -1,0 +1,35 @@
+.pro-breadcrumbs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
+  line-height: 2rem;
+  padding: .5rem 2rem;
+  background-color: #fefefe;
+  border-bottom: 1px solid $gray-200;
+
+  [aria-label=breadcrumb] {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    .icon-cog {
+      margin-left: 5vh;
+      font-size: 80%;
+      color: $danger;
+    }
+  }
+
+  [aria-label=social] {
+    &:first-child {
+      margin-left: auto;
+    }
+    .icon {
+      color: transparentize($color-active, .2);
+      font-size: 2rem;
+      line-height: 3rem;
+      + .icon {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+}

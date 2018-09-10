@@ -1,0 +1,31 @@
+ruby:
+  path = target_path target
+  importance = ['icon-star-o',
+                'icon-star-half-o',
+                'icon-star']
+
+%dataset.catalog__body[
+  itemscope
+  itemtype='http://schema.org/Dataset'
+  ]
+  .container
+    .catalog__content.flex-grow-1
+      h3%name: a%url.d-block href=path == target.name
+      .mt-2.d-flex.align-items-center
+        .icon.text-danger class=importance[target.importance]
+        - unless target.address.empty?
+          .ml-2.small == target.address
+      - unless target.areas.empty?
+        .mt-3.small.text-success.text-uppercase = target.areas_show '<br>'
+      - unless target.partner.nil?
+        .mt-3: a.lead.h-player href=partner_path(target.partner) = target.partner.name
+
+    .catalog__figure.d-none.d-md-block
+      a%mainEntityOfPage.banner(
+        class=(target.image.nil? ? '' : 'h-preload')
+        href=path
+        )
+        = render partial: 'attachments/canvas', object: target.image,
+                 locals: {class: ['banner__frame',
+                                  'h-shadowed'],
+                          links: {thumbnail: true}}

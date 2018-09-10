@@ -1,0 +1,16 @@
+- unless @breadcrumbs.nil?
+  .pro-breadcrumbs.d-flex
+    - unless @breadcrumbs.empty?
+      nav.d-none.d-md-block aria-label='breadcrumb'
+        ol.breadcrumb
+          - @breadcrumbs.each do |name, href|
+            - if name == :admin
+              li: a.icon.icon-cog.h-text--href href=href target='_blank' aria-hidden='true'
+            - else
+              li.breadcrumb-item: a href=href = name
+
+
+    - unless @models.nil?
+      = paginate @models, window: 2, theme: 'bootstrap'
+
+    = render 'shared/social'

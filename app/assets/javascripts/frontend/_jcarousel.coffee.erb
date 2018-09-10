@@ -1,0 +1,81 @@
+(($, ProJ) ->
+
+  class Carousel
+
+    constructor: (element, options) ->
+      @obj = $ element
+      @outer = @obj.find '.outer'
+      @outer.on 'jcarousel:reload jcarousel:create', ->
+        obj = $ @
+        width = obj.innerWidth()
+        numb = 1
+        for w, n of options.width when w < width
+          numb = n
+        obj.jcarousel('items').css 'width', Math.ceil(width / numb - options.margin) + 'px'
+        obj.css 'visibility', 'visible'
+      @outer.jcarousel
+        wrap: options.wrap
+        center: options.center
+        animation:
+          duration: options.duration
+          easing: options.easing
+      @outer.jcarouselAutoscroll
+        interval: options.autoscroll
+        target: '+=1'
+        autostart: yes
+      @lazyload()
+      @control()
+      @
+
+    lazyload: ->
+      ProJ.lazyload @obj,
+        scope: @obj
+        attribute: 'src'
+        event: 'jcarousel:animateend'
+
+    control: ->
+      obj = @obj.find '.control'
+      if obj.length
+        el = $('<div/>').addClass 'prev icon'
+        obj.append el
+        el.jcarouselControl target: '-=1'
+        el = $('<div/>').addClass 'next icon'
+        obj.append el
+        el.jcarouselControl target: '+=1'
+      @obj.find '.pagination'
+        .jcarouselPagination
+          item: (page)-> $('<div/>').addClass "icon#{ page is '1' and ' active' or '' }"
+        .on 'jcarouselpagination:active', '.icon', ->
+          $(@).addClass 'active'
+        .on 'jcarouselpagination:inactive', '.icon', ->
+          $(@).removeClass 'active'
+
+
+  ProJ.carousel = ->
+    options =
+      wrap: 'circular'
+      center: no
+      duration: 700
+      easing: 'easeOutSine',
+      autoscroll: 5000
+      control: yes
+      pagination: yes
+      margin: 0
+      width:
+        0: 2
+        576: 3
+        768: 4
+        992: 5
+        1280: 6
+        1440: 7
+
+    fn = (els, options) -> els.each -> new Carousel @, options
+
+    if (els = $ '[data-carousel]').length
+      if $.jcarousel?
+        fn els, options
+      else
+        ProJ.script '<%= asset_path('carousel.js') %>', -> fn els, options
+    @
+
+) jQuery, ProJ

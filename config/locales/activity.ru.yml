@@ -1,0 +1,38 @@
+---
+ru:
+  activities:
+    index:
+      label: "Деятельность"
+      title: "Деятельность"
+      description: "Деятельность группы компаний «ССК»"
+      header: "Деятельность ГК «ССК»"
+
+  activerecord:
+    models:
+      activity:
+        one: "Деятельность"
+        few: "Деятельности"
+        many: "Деятельностей"
+        other: "Деятельности"
+    attributes:
+      activity:
+        published: "Опубликовано"
+        navigated: "Навигация"
+        name: "Название"
+        header: "Заголовок"
+        annotation: "Аннотация"
+        content: "Содержимое"
+        partial: "Шаблон"
+        index: "Индекс"
+        created_at: "Создано"
+        updated_at: "Изменено"
+        parent: "Предок"
+        parent_id: "Предок"
+        child: "Потомок"
+        children: "Потомки"
+        ancestry_depth: "Уровень"
+        areas: "Области деятельности"
+        images_purge: "Очистить"
+        images: "Изображения"
+        image: "Баннер"
+...

@@ -1,0 +1,95 @@
+a.is-active,
+.is-active > a {
+  color: $color-active;
+  cursor: default;
+}
+
+.is-js {
+  .h-onclick,
+  [data-lightbox],
+  [data-lightbox-href]{
+    cursor: pointer;
+  }
+}
+
+.h-preload {
+  background: image_url('loading/0.svg') center no-repeat rgba($gray-200, .5);
+  background-size: 25%;
+  &--line {
+    background-image: image_url('loading/7.svg');
+  }
+  &--mini {
+    background-size: 12.5%;
+  }
+  &.is-error {
+    background-image: image_url('system/error.svg');
+  }
+}
+
+.h-bg {
+  &--only {
+    display: inline-block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -9999em;
+    direction: ltr;
+    background-repeat: no-repeat;
+    br {
+      display: none;
+    }
+  }
+  &--cover {
+    background: center no-repeat transparent;
+    background-size: cover;
+    &-top {
+      background-position: center top;
+    }
+    &-bottom {
+      background-position: center bottom;
+    }
+  }
+  &--no-image {
+    background: center no-repeat $gray-100;
+    background-image: image_url('system/image.svg');
+    background-size: contain;
+  }
+  &--lazy {
+    background: image_url('system/lazy.svg') repeat $gray-100;
+  }
+}
+
+.h-shadowed {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .7);
+  transition: box-shadow .2s;
+  &:hover {
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, .9);
+  }
+}
+
+.h-gradient {
+  &--top {
+    @include gradient-y(rgba(0, 0, 0, .25), rgba(0, 0, 0, 0));
+  }
+  &--bottom {
+    @include gradient-y(rgba(0, 0, 0, 0), rgba(0, 0, 0, .25));
+  }
+}
+
+.h-player {
+  @include icon-play();
+  &:before {
+    padding-right: ($spacer / 2);
+    font-family: 'iconfont';
+    font-size: 80%;
+  }
+}
+
+.h-duplet {
+  small {
+    display: block;
+    margin-top: .25rem;
+    font-size: 50%;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}

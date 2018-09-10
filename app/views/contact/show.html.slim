@@ -1,0 +1,24 @@
+ruby:
+  images = [{path: "content/contact/00.jpg",
+             header: 'улица Малая Дмитровка'},
+            {path: "content/contact/01.jpg",
+             header: 'дом 18а'},
+            {path: "content/contact/02.jpg",
+             header: 'строение 3'}]
+
+
+.pro-content.container
+  p.h-font--size-sm.text-muted.text-lg-center
+    | Вы хотите получать больше информации о <em class="text-nowrap">#{t 'application.label'}</em>? <br/>
+      Заполните форму и мы ответим вам в ближайшее время.
+
+  = render 'form'
+
+aside.mosaic
+  .row.no-gutters
+    - for image in images
+      = render partial: 'shared/mosaic/figure', object: image[:path],
+              locals: {col: 4,
+                       height: 448,
+                       header: image[:header],
+                       lightbox: "#{action_name}-lightbox"}

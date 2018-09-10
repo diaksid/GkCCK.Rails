@@ -1,0 +1,24 @@
+- cache @model do
+
+  .pro-content.container
+    .banner.img-thumbnail class=(@model.image.attached? && 'h-preload')
+      - attached = @model.image.attached?
+      canvas.banner__frame(
+        class=(attached ? 'h-bg--cover' : 'h-bg--no-image')
+        width= 192
+        height= 192
+        data-lazy=(attached && url_for(@model.image.variant resize_to_fill 192))
+        data-lightbox=attached
+        data-lightbox-href=(attached && url_for(@model.image.variant resize_to_fill 800, 600))
+        )
+      - if attached
+        link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)
+        link%image href=url_for(@model.image.variant resize_to_fill 800, 600)
+
+        /== @model.content.squish
+        /- unless @model.images.empty?
+          .c-content__images.mdl-grid
+            = render partial: 'images/canvas', collection: @model.images, cached: true,
+                    layout: 'images/thumbnail',
+                    locals: {class_name: 'c-img--response',
+                            lightbox: "#{action_name}-lightbox"}

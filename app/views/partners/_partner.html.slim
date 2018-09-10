@@ -1,0 +1,33 @@
+ruby:
+  path = partner_path partner
+  importance = ['icon-star-o',
+                'icon-star-half-o',
+                'icon-star']
+
+
+%dataset.catalog__body(
+  itemscope
+  itemtype='http://schema.org/Dataset'
+  )
+  .container
+    .catalog__figure
+      a%mainEntityOfPage.banner.img-thumbnail(
+        class=(partner.image.attached? ? 'h-preload' : '')
+        href= path
+        )
+        = render partial: 'attachments/canvas', object: partner.image,
+                 locals: {class: ['banner__frame'],
+                          links: {image: 192,
+                                  thumbnail: true}}
+
+    .catalog__content
+      h3%name.mb-3: a%url href=path = partner.name
+      - for item in partner.targets
+        a.item href=target_path(item)
+          ^icon-building-o.text-info
+          .flex-grow-1.mx-3  = item.name
+          .icon.text-danger class=importance[item.importance]
+      - for item in partner.permits
+        a.item href=permit_path(item)
+          ^icon-certificat.text-success
+          .flex-grow-1.lead.h-duplet.ml-3 == item.header || item.name

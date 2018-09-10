@@ -1,0 +1,11 @@
+= render partial: 'statics/home/business', cached: true
+- unless @activities.nil?
+  = render partial: 'statics/home/activities', object: @activities, cached: true
+
+.pro-content.container
+  p <b>Группа компаний «ССК»</b> объединяет строительные, инжиниринговые и ремонтные компании, которые осуществляют работы по <strong>строительному контролю</strong>, проектированию, строительству и исполнению <strong>функций технического заказчика</strong> на крупных жилых и нежилых объектах недвижимости на территории Москвы и Московской области.
+
+  p <b>Группа компаний «ССК»</b> сегодня &mdash; это более 15 лет успешного опыта, команда квалифицированных сотрудников, портфолио из более 200 объектов, собственный научно-исследовательский центр и неизменно индивидуальный подход к каждому клиенту.
+
+- unless @targets.nil?
+  = render partial: 'shared/mosaic/targets', object: @targets, cached: true

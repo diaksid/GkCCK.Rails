@@ -1,0 +1,43 @@
+@import "variables";
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+$icon-class-iclude: false;
+@import "iconfont/icons";
+
+@import "base";
+@import "forms";
+@import "helpers/base";
+@import "helpers/type";
+
+@import "components/banner";
+@import "components/albom";
+@import "components/catalog";
+@import "components/mosaic";
+@import "components/ribbon";
+@import "components/nav";
+@import "components/breadcrumbs";
+@import "components/pagination";
+@import "components/header";
+@import "components/navbar";
+@import "components/footer";
+
+@import "wrappers/jcarousel";
+@import "wrappers/yandex";
+
+@import "content/statics";
+@import "content/contact";
+
+.pro-preload {
+  display: none;
+
+  &.h-preload {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

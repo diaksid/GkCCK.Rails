@@ -1,0 +1,25 @@
+(($, ProJ) ->
+  fn = (els, options) -> els.each -> $(@).trumbowyg $.extend {}, options, $(@).data 'redactor'
+
+  ProJ.redactor = ->
+    options =
+      svgPath: '<%= asset_path('trumbowyg.svg') %>'
+      lang: 'ru'
+      btns: [
+        ['viewHTML']
+        ['undo', 'redo']
+        ['strong', 'em', 'del']
+        ['insertImage', 'link'],
+        ['fullscreen']
+      ]
+      autogrow: true
+    if (els = $ '[data-redactor]').length
+      if $.trumbowyg?
+        fn els, options
+      else
+        ProJ
+          .stylesheet '<%= asset_path('redactor.css') %>'
+          .script '<%= asset_path('redactor.js') %>', -> fn els, options
+    @
+
+) jQuery, ProJ

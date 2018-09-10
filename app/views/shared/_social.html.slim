@@ -1,0 +1,18 @@
+- unless GOOGLE[:plus].nil? && TWITTER.nil?
+  nav aria-label='social'
+    - unless TWITTER.nil?
+      a.icon.icon-social-tw.h-text--href(
+        rel='nofollow'
+        href=TWITTER
+        target='_blank'
+        aria-hidden='true'
+        itemprop='relatedLink'
+        )
+    - unless GOOGLE[:plus].nil?
+      a.icon.icon-social-gp.h-text--href(
+        rel='nofollow'
+        href=GOOGLE[:plus]
+        target='_blank'
+        aria-hidden='true'
+        itemprop='relatedLink'
+        )

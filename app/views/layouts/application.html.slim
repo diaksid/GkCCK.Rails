@@ -1,0 +1,64 @@
+ruby:
+  @schema[:page] ||= 'WebPage'
+  @schema[:main] = @schema[:main].blank? ? {itemprop: 'mainContentOfPage'} :
+                                           {itemprop: 'mainEntity',
+                                            itemscope: true,
+                                            itemtype: "http://schema.org/#{@schema[:main]}"}
+
+doctype html
+
+
+html(
+  lang=I18n.locale
+  itemscope
+  itemtype="http://schema.org/#{@schema[:page]}"
+  )
+
+
+  head
+    meta charset='utf-8'
+    meta(
+      http-equiv='X-UA-Compatible'
+      content='IE=edge'
+      )
+    meta(
+      name='viewport'
+      content= 'width=device-width, initial-scale=1'
+      )
+
+    - unless @description.blank?
+      meta(
+        name='description'
+        content=@description
+        )
+    title
+      = @title.blank? ? t('application.title') : @title
+      = @suffix.blank? ? '' : " · #{@suffix}"
+    - unless @robots.blank?
+      meta(
+        name='robots'
+        content=@robots
+        )
+    - unless @keywords.blank?
+      meta(
+        name='keywords'
+        content=@keywords
+        )
+    - unless @canonical.blank?
+      link(
+        rel='canonical'
+        href=@canonical
+        )
+
+    = render 'head'
+
+
+  body class="#{controller_name}__#{action_name}"
+    = render 'header'
+    = render 'breadcrumbs'
+
+    main@main *@schema[:main] = yield
+
+    = render 'footer'
+    = render 'navbar'
+    = render 'messages'

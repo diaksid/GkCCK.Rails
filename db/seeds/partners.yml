@@ -1,0 +1,23 @@
+---
+-
+  name: "ООО «ССК»"
+  affiliate: true
+-
+  name: "ООО «ССК-Проект»"
+  affiliate: true
+-
+  name: "ООО «СУ 363»"
+  affiliate: true
+-
+  name: "НПЦ «СтройТех»"
+  affiliate: true
+-
+  name: "ООО «УМ-77»"
+  affiliate: true
+-
+  name: "ЗАО «ДОНСТРОЙ Инвест»"
+-
+  name: "АО «МР Групп»"
+-
+  name: "АО «ПСН»"
+...

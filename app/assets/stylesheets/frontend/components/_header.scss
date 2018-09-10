@@ -1,0 +1,102 @@
+.pro-header {
+  position: relative;
+  height: 50%;
+  min-height: 480px;
+  padding: 0 1.5rem 0 1rem;
+  overflow-x: hidden;
+  color: $white;
+  line-height: 1;
+
+  @include media-breakpoint-down(lg) {
+    min-height: 400px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-right: 2.5rem;
+    min-height: 312px;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: $navbar-height;
+  }
+
+  .header {
+    &__title {
+      position: absolute;
+      left: 3rem;
+      bottom: 3rem;
+      margin: 0;
+      color: #eff;
+      font-size: 4rem;
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: 2px;
+      transition: all .5s;
+      cursor: default;
+      @include media-breakpoint-down(xl) {
+        left: 3rem;
+        bottom: 3rem;
+        font-size: 4rem;
+      }
+      @include media-breakpoint-down(lg) {
+        font-size: 3rem;
+      }
+      @include media-breakpoint-down(md) {
+        left: 2rem;
+        bottom: 2rem;
+        font-size: 3rem;
+      }
+      @include media-breakpoint-down(sm) {
+        font-size: 2rem;
+      }
+      @include media-breakpoint-down(xs) {
+        left: 1rem;
+        bottom: 1rem;
+      }
+      small {
+        display: block;
+        padding-top: .7rem;
+        font-size: 55%;
+      }
+    }
+
+    &__phone {
+      display: block;
+      float: right;
+      color: rgba(255, 255, 255, .9);
+      font-size: 4.5rem;
+      transition: all .2s;
+      font-weight: bold;
+      text-decoration: none !important;
+      @include media-breakpoint-down(lg) {
+        font-size: 3.5rem;
+      }
+      @include media-breakpoint-down(sm) {
+        font-size: 2.25rem;
+      }
+      @include media-breakpoint-down(xs) {
+        font-size: 1.875rem;
+      }
+    }
+
+    &__preload {
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: $gray-400;
+    }
+
+    &__under-construction {
+      position: relative;
+      z-index: -1;
+      @include size(256px, 192px);
+      background: 0 0 no-repeat transparent;
+      background-image: image_url('under-construction.png');
+    }
+  }
+}

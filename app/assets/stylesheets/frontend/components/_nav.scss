@@ -1,0 +1,65 @@
+.dropdown {
+  &:hover {
+    .dropdown-toggle {
+      color: #cfcfcf;
+      border-color: transparent;
+    }
+  }
+}
+
+.dropdown-menu {
+  padding: 0;
+  background: #fff;
+  border: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  @include border-radius(0);
+  transition: all .1s;
+}
+
+.dropdown-item {
+  padding: 1rem 1.25rem;
+  font-size: .875rem;
+  line-height: 1rem;
+  transition: all .1s;
+  &.is-parent {
+    color: $color-accent;
+  }
+  &.emulator {
+    color: #000;
+    background-color: #fdfdfd;
+  }
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: $link-color;
+  }
+  &.is-active,
+  &.active {
+    &,
+    &:focus,
+    &:hover {
+      color: #fff;
+      background-color: $color-accent;
+    }
+  }
+}
+
+.dropdown-divider {
+  margin: 0;
+}
+
+.is-touch--not {
+  .touch {
+    display: none;
+  }
+  .dropdown-menu {
+    margin: 0;
+  }
+  .dropdown {
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}

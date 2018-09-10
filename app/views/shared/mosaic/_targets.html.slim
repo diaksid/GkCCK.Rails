@@ -1,0 +1,22 @@
+- cache targets do
+
+  aside.objects.mosaic(
+    itemscope
+    itemtype='http://schema.org/DataCatalog'
+    )
+
+    h2%name.m-0: a%url.ribbon.ribbon--poster.ribbon--light href=targets_path Все объекты
+
+    .row.no-gutters
+      = render partial: 'shared/mosaic/banner', object: targets[0],
+               locals: {height: 300}
+      = render partial: 'shared/mosaic/banner', object: targets[1],
+               locals: {height: 300}
+
+    .row.no-gutters
+      = render partial: 'shared/mosaic/banner', object: targets[2],
+               locals: {col: 4, width: 533.34, height: 300}
+      = render partial: 'shared/mosaic/banner', object: targets[3],
+              locals: {col: 4, width: 533.34, height: 300}
+      = render partial: 'shared/mosaic/banner', object: targets[4],
+              locals: {col: 4, width: 533.34, height: 300}

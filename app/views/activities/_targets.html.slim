@@ -1,0 +1,20 @@
+- unless targets.empty?
+  .c-carousel(
+    itemscope
+    itemtype='http://schema.org/DataCatalog'
+    data={carousel: true}
+    )
+    .outer
+      .inner
+        - for item in targets
+          figure%dataset.item(
+            itemscope
+            itemtype='http://schema.org/Dataset'
+            )
+            a%url.banner.h-preload.d-block href=target_path(item)
+              = render partial: 'attachments/canvas', object: item.image,
+                       locals: {class: ['banner__frame', 'w-100'],
+                                links: {thumbnail: true},
+                                lazy: :src}
+              %name.banner__title.text-truncate == item.name
+    .control aria-hidden='true': .pagination.d-none.d-sm-flex aria-hidden='true'

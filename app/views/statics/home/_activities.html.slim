@@ -1,0 +1,18 @@
+- cache activities do
+
+  aside.activities.mosaic[
+    itemscope
+    itemtype='http://schema.org/DataCatalog'
+    ]
+
+    .row.no-gutters
+      = render partial: 'shared/mosaic/banner', object: activities[0],
+               locals: {button: true}
+
+      .row.no-gutters.col-lg-6
+        = render partial: 'shared/mosaic/banner', object: activities[1]
+        = render partial: 'shared/mosaic/banner', object: activities[2]
+        = render partial: 'shared/mosaic/banner', object: activities[3],
+                 locals: {col: 12, height: 300, align: 'top'}
+
+    h2%name.m-0: a%url.ribbon.ribbon--poster.ribbon--light href=activities_path Все области деятельности

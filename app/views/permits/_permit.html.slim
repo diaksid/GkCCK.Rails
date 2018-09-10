@@ -1,0 +1,24 @@
+%dataset.catalog__body[
+  itemscope
+  itemtype='http://schema.org/Dataset'
+  ]
+  .container
+    .catalog__content.flex-grow-1
+      h3%name.h-duplet: a%url href=permit_path(permit) == permit.header || permit.name
+      .mt-2.lead = permit.number
+      .mt-2.small = permit.provider
+      .mt-2
+        a.lead(
+          class=link_status_permit_partner(permit.partner_id)
+          href=permits_path(partner: permit.partner_id)
+          ) = permit.partner.name
+
+    .catalog__figure
+      a%mainEntityOfPage.banner(
+        class=(permit.image.nil? ? '' : 'h-preload')
+        href=permit_path(permit)
+        )
+        = render partial: 'attachments/canvas', object: permit.image,
+                locals: {class: ['banner__frame h-shadowed'],
+                         fit: true,
+                         links: {thumbnail: true}}

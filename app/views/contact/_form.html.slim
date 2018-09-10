@@ -1,0 +1,96 @@
+- params = request.params[:contact] || {}
+
+
+.row.justify-content-sm-center
+  form#form-contact.col-sm-10.col-lg-8.col-xl-6(
+    method='post'
+    action=contact_path
+  )
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+
+    fieldset.form-group
+      label.sr-only[for='contact-name'] = t 'contact_form.name.label'
+      .input-group
+        .input-group-prepend
+          ^icon-user.icon--fw.input-group-text
+        input&text#contact-name.form-control[
+          name='contact[name]'
+          title=t('contact_form.name.valid')
+          pattern='.{3,128}'
+          placeholder=t('contact_form.name.label')
+          required
+          value=params[:name]
+        ]
+
+    fieldset.form-group
+      label.sr-only[for='contact-email'] = t 'contact_form.email.label'
+      .input-group
+        .input-group-prepend
+          ^icon-envelope.icon--fw.input-group-text
+        input&email#contact-email.form-control[
+          name='contact[email]'
+          title=t('contact_form.email.valid')
+          placeholder=t('contact_form.email.label')
+          required
+          value=params[:email]
+        ]
+
+    fieldset.form-group
+      label.sr-only[for='contact-phone'] = t 'contact_form.phone.label'
+      .input-group
+        .input-group-prepend
+          ^icon-phone.icon--fw.input-group-text
+        input&tel#contact-phone.form-control[
+          name='contact[phone]'
+          title=t('contact_form.phone.valid')
+          pattern='[0-9\+\-\(\)\s]{7,}'
+          placeholder=t('contact_form.phone.label')
+          value=params[:phone]
+        ]
+
+    fieldset.form-group
+      label.sr-only[for='contact-subject'] = t 'contact_form.subject.label'
+      .input-group
+        .input-group-prepend
+          ^icon-tag.icon--fw.input-group-text
+        input&text#contact-subject.form-control[
+          name='contact[subject]'
+          placeholder=t('contact_form.subject.label')
+          value=params[:subject]
+        ]
+
+    fieldset.form-group
+      label.sr-only[for='contact-content'] = t 'contact_form.content.label'
+      textarea#contact-content.form-control.form-control-required[
+        name='contact[content]'
+        rows=7
+        placeholder=t('contact_form.content.label')
+        required
+        data-redactor
+      ] == params[:content]
+
+    fieldset.form-group.text-muted.font-weight-light.text-sm-right
+      ^icon-exclamation-circle>
+      small = t 'contact_form.required'
+
+    fieldset
+      .float-sm-right.mb-2 = recaptcha_tags hl: I18n.locale, noscript: false
+      button#contact-submit&submit.btn.btn-lg.btn-primary.mb-2[disabled=true]
+        ^icon-send
+
+    /fieldset.form-group
+      .custom-control.custom-checkbox
+        input&checkbox#form-checkbox.custom-control-input>[onchange='privacy_onchange(this)']
+        label.custom-control-label.text-muted.font-weight-light.small(for='form-checkbox')
+          = t 'contact_form.privacy'
+
+    fieldset.form-group.form-check
+      input&checkbox#form-checkbox.form-check-input>[onchange='privacy_onchange(this)']
+      label.form-check-label.text-muted.font-weight-light.small(for='form-checkbox')
+        = t 'contact_form.privacy'
+
+javascript:
+  document.querySelector('.g-recaptcha').innerHTML = '';
+  function privacy_onchange(c) {
+      document.getElementById('contact-submit').disabled = !c.checked;
+  }

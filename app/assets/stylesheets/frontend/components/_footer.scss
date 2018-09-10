@@ -1,0 +1,117 @@
+// Footer
+.pro-footer {
+  position: relative;
+  color: $gray-600;
+  background: $gray-900;
+
+  a {
+    color: $gray-400;
+    &:hover:not(.is-active) {
+      color: $link-hover-color;
+    }
+  }
+
+  .content {
+    padding: 1rem 0;
+    font-size: $font-size-sm;
+    line-height: 1.5 * $spacer;
+    border-bottom: 1px solid $gray-700;
+
+    [class^="col-"] {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    h3 {
+      margin: .5rem 0;
+      color: #888;
+      font-size: .875rem;
+      font-weight: bold;
+    }
+    .nav {
+      margin-bottom: 1rem;
+      a {
+        display: block;
+        padding: .5rem 0;
+      }
+    }
+    .business {
+      .icon {
+        margin-right: .5rem;
+      }
+    }
+    .contact {
+      margin-bottom: .5rem;
+      a {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  .copyright {
+    padding: .25rem $spacer;
+    color: $gray-600;
+    font-size: $font-size-sm;
+    line-height: 3 * $spacer;
+    a {
+      color: $gray-500;
+    }
+    .icon {
+      margin-right: 1rem;
+      font-size: 1.25rem;
+    }
+    .onclick {
+      display: none;
+      .is-js & {
+        display: inline-block;
+        transition: all .4s;
+        &:hover,
+        &:focus {
+          color: $link-hover-color;
+          transform: scale(1.1);
+        }
+      }
+    }
+    .develop {
+      color: #055;
+      font-size: $font-size-sm;
+      font-weight: 600;
+    }
+  }
+
+  [aria-label=social] {
+    margin: 1rem 0;
+    .icon {
+      font-size: $font-size-lg;
+      + .icon {
+        margin-left: 1.5 * $spacer;
+      }
+    }
+  }
+}
+
+// Yandex Search
+.pro-yandex-search {
+  display: block;
+  margin: 2.75rem 0 .5rem;
+  line-height: 1rem;
+
+  button,
+  input {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  button {
+    padding: 8px;
+    font-size: .875rem;
+  }
+
+  input {
+    padding: 5px 0;
+    border-bottom: 1px solid $gray-500;
+    &::placeholder {
+      color: $input-color-placeholder;
+    }
+  }
+}

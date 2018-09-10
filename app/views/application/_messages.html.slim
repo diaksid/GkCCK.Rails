@@ -1,0 +1,14 @@
+- if not flash.empty?
+  .pro-messages
+    - flash.each do |name, msg|
+      .alert.alert-dismissible.fade.show(
+        role=(name === 'notice' ? 'note' : 'alert')
+        class="alert-#{name === 'notice' ? 'success' : 'danger'}"
+        )
+          button.close(
+            type='button'
+            data={dismiss: 'alert'}
+            aria={label: 'Close'}
+            )
+            span aria={hidden: 'true'} &times;
+          = msg

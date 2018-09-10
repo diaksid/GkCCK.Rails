@@ -1,0 +1,32 @@
+// Typography
+// $font-family-base: "Open Sans";
+
+// Colors
+$color-accent:            #d00016;
+$color-active:            #077;
+$input-color-placeholder: transparentize(#799, .5);
+
+// Nav
+$dropdown-bg: #fcfcfc;
+
+// Navbar
+$navbar-height:       112px;
+$navbar-fixed-height: 64px;
+
+$navbar-light-color:          transparentize(#f7f7f9, .05);
+$navbar-light-hover-color:    $navbar-light-color;
+$navbar-light-active-color:   transparentize(#fff, .05);
+$navbar-light-disabled-color: transparentize(#eceeef, .05);
+
+// Breadcrumbs
+$breadcrumb-padding-y:              .5rem;
+$breadcrumb-padding-x:              0;
+$breadcrumb-margin-bottom:          0;
+$breadcrumb-bg:                     transparent;
+$breadcrumb-border-radius:          0;
+
+
+// Pagination
+$pagination-padding-x:     1rem;
+$pagination-active-bg:     $color-accent;
+$pagination-active-border: $color-accent;

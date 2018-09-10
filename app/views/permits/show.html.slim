@@ -1,0 +1,31 @@
+- cache @model do
+
+  .pro-content.container
+    - unless @model.header.blank?
+      header.mb-3: h1.h-duplet == @model.header
+
+    .row
+      .col-md-6
+        h3.text-muted.mb-3
+          ' №
+          small = @model.number
+
+        p.mb-3 = @model.provider
+
+      .col-md-6.albom
+        ruby:
+          size = {}
+          if @model.images.attached?
+            size = {width: 192, height: 144} if @model.image.metadata[:width] > @model.image.metadata[:height]
+            size = {width: 144, height: 192} if @model.image.metadata[:width] < @model.image.metadata[:height]
+          end
+        = render partial: 'attachments/canvas', collection: @model.images,
+                 layout: 'attachments/banner',
+                 locals: {class: ['banner__frame', 'h-shadowed'],
+                          fit: true,
+                          lightbox: "#{action_name}-lightbox",
+                          links: true,
+                          wrapper: {class: ['h-preload']}}.merge!(size)
+
+        - unless @model.images.empty?
+          link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)

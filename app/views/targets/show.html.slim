@@ -1,0 +1,45 @@
+- cache @model do
+
+  .pro-content.container
+    - unless @model.address.blank?
+      h2.mb-5 == @model.address
+
+    .row.mb-5
+      .col-md-6
+        dl.row.mb-3
+          dt.col-sm-5 заказчик:
+          - partner = @model.partner ? @model.partner.name : @model.partner_as
+          dd.col-sm-7 = partner.blank? ? '--' : partner
+          dt.col-sm-5 начало работ:
+          dd.col-sm-7 = @model.start_at.blank? ? '--' : time_tag(@model.start_at)
+          dt.col-sm-5 окончание работ:
+          dd.col-sm-7 = @model.finish_at.blank? ? '--' : time_tag(@model.finish_at)
+
+        - unless @model.areas.empty?
+          ul.lead.mb-3
+            - for area in @model.areas
+              li = area.name
+
+        - unless @model.content.blank?
+          .h-text--readable.py-2.mb-3 == @model.content.squish
+
+      .col-md-6
+        - unless @model.geo.blank?
+          ruby:
+            data = @model.geo.split %r{,\s*}
+            data = {data: {name: @model.name,
+                           info: @model.address,
+                           center: "%s %s" % data,
+                           placemark: "%s %s" % data,
+                           zoom: (data[2] || 14)}}
+          figure.c-yandex-map.card.h-preload.mb-3 *data aria-hidden='true'
+
+    - unless @model.images.empty?
+      .albom = render partial: 'attachments/canvas', collection: @model.images,
+              layout: 'attachments/banner',
+              locals: {class: ['banner__frame', 'h-shadowed'],
+                       lightbox: "#{action_name}-lightbox",
+                       links: true,
+                       wrapper: {class: ['h-preload']}}
+
+      link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)

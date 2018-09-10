@@ -1,0 +1,37 @@
+---
+ru:
+  feedbacks:
+    index:
+      label: "Отзывы"
+      title: "Отзывы"
+      description: "Отзывы о группе компаний «ССК»"
+      header: "Отзывы о ГК «ССК»"
+
+  activerecord:
+    models:
+      feedback:
+        one: "Отзыв"
+        few: "Отзыва"
+        many: "Отзывов"
+        other: "Отзывы"
+    attributes:
+      feedback:
+        published: "Опубликовано"
+        published_at: "Дата публикации"
+        navigated: "Навигация"
+        header: "Заголовок"
+        content: "Содержимое"
+        partner: "Партнёр"
+        partner_as: "&nbsp;"
+        source: "Источник"
+        customer: "Заказчик"
+        image: "Документ"
+        created_at: "Создано"
+        updated_at: "Изменено"
+
+  active_admin:
+    scopes:
+      source: "Источник"
+    local:
+      feedbacks: "Отзывы (%{count})"
+...

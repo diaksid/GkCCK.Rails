@@ -1,0 +1,39 @@
+---
+ru:
+  permits:
+    index:
+      label: "Допуски"
+      title: "Допуски"
+      description: "Допуски группы компаний «ССК»"
+      header: "Допуски"
+
+  activerecord:
+    models:
+      permit:
+       one: "Допуск"
+       few: "Допуска"
+       many: "Допусков"
+       other: "Допуски"
+    attributes:
+      permit:
+        published: "Опубликовано"
+        navigated: "Навигация"
+        name: "Наименование"
+        number: "Номер"
+        provider: "Кем выдано"
+        issue_at: "Выдано"
+        onset_at: "Начало"
+        end_at: "Окончание"
+        partner: "Владелец"
+        index: "Индекс"
+        created_at: "Создано"
+        updated_at: "Изменено"
+        images: "Изображения"
+        images_purge: "Очистить"
+        image: "Баннер"
+        active?: "Активно"
+
+  active_admin:
+    local:
+      permits: "Допуски (%{count})"
+...

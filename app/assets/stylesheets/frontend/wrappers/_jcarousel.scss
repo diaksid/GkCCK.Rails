@@ -1,0 +1,72 @@
+[data-carousel] {
+  .outer {
+    position: relative;
+    overflow: hidden;
+    visibility: hidden;
+    background-color: $gray-100;
+  }
+
+  .inner {
+    display: flex;
+    position: relative;
+    width: 9999em;
+  }
+
+  .item {
+    margin: 0;
+    overflow: hidden;
+    transition: all .4s;
+  }
+
+  .control {
+    position: relative;
+    height: 3rem;
+  }
+
+  .icon {
+    padding: .5rem;
+    color: $gray-300;
+    font-size: .875rem;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover {
+      color: $gray-700;
+    }
+  }
+
+  .prev,
+  .next,
+  .pagination {
+    position: absolute;
+    top: .5rem;
+  }
+
+  .prev {
+    right: 5rem;
+    @include icon-step-backward();
+  }
+
+  .next {
+    right: 0;
+    @include icon-step-forward();
+  }
+
+  .pagination {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    .icon {
+      margin-right: .25rem;
+      font-size: .75rem;
+      @include icon-square-o();
+      &:hover {
+        @include icon-square();
+      }
+      &.active {
+        color: #bbb;
+        cursor: default;
+        @include icon-square();
+      }
+    }
+  }
+}

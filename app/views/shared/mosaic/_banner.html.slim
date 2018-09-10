@@ -1,0 +1,37 @@
+ruby:
+  breakpoint ||= 'lg'
+  col ||= 6
+  width ||= 800
+  height ||= 600
+  align ||= false
+  button ||= false
+  path = url_for id: banner.id,
+                 action: :show,
+                 controller: banner.class.to_s.downcase.pluralize
+  if (attached = !banner.image.nil?)
+    # attached = banner.image.attached? if banner.image.is_a? ActiveStorage::Attached
+    attached = banner.image.attached? if banner.image.methods.include? :attached?
+  end
+
+
+article%dataset.banner(
+  class="col-#{breakpoint}-#{col}"
+  itemscope
+  itemtype='http://schema.org/Dataset'
+  )
+
+  a%mainEntityOfPage href=path
+    canvas.banner__frame(
+      class=[attached ? 'h-bg--cover' : 'h-bg--no-image',
+             (attached && align) ? "h-bg--cover-#{align}" : '']
+      width=width
+      height=height
+      data-lazy=(attached && url_for(banner.image.variant resize_to_area 800, 600))
+      )
+
+    header.banner__header
+      h3%name.banner__name = banner.name
+      - if button
+        .banner__button.btn.btn-outline-secondary
+          ' подробнее
+          ^icon-chevron-right

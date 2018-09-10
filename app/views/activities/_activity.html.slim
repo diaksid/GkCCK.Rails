@@ -1,0 +1,17 @@
+%dataset.catalog__body[
+  itemscope
+  itemtype='http://schema.org/Dataset'
+  ]
+  .container
+    .catalog__content.flex-grow-1
+      a%mainEntityOfPage.banner.img-thumbnail.d-md-block(
+        class=(activity.image.nil? ? '' : 'h-preload')
+        href=activity_path(activity)
+        )
+        = render partial: 'attachments/canvas', object: activity.image,
+                 locals: {class: ['banner__frame'],
+                          links: {thumbnail: true}}
+
+      h3%name: a%url href=activity_path(activity) = activity.name
+      - unless activity.annotation.blank?
+        .py-2.mb-3.h-text--readable == activity.annotation.squish

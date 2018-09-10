@@ -1,0 +1,42 @@
+---
+ru:
+  partners:
+    index:
+      label: "Партнёры"
+      title: "Партнёры"
+      description: "Партнёры группы компаний «ССК»"
+      header: "Партнёры ГК «ССК»"
+
+  activerecord:
+    models:
+      partner:
+        one: "Парнёр"
+        few: "Парнёра"
+        many: "Парнёров"
+        other: "Парнёры"
+    attributes:
+      partner:
+        published: "Опубликовано"
+        navigated: "Навигация"
+        active: "Активно"
+        affiliate: "Филиал"
+        name: "Название"
+        content: "Описание"
+        phone: "Телефон"
+        address: "Адрес"
+        geo: "Геокоординаты"
+        website: "Сайт"
+        index: "Индекс"
+        created_at: "Создано"
+        updated_at: "Изменено"
+        user: "Аккаунт"
+        targets: "Объекты"
+        permits: "Допуски"
+        feedbacks: "Отзывы"
+        image: "Логотип"
+        image_purge: "Удалить"
+
+  active_admin:
+    local:
+      contacts: "Контакты"
+...

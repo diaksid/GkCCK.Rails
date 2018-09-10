@@ -1,0 +1,87 @@
+ruby:
+  case request.path
+    when contact_path
+      type = 'mini'
+    else
+      type = false
+  end
+  def brand(*attr)
+    request.path == root_path ? {tag: 'span'} : {tag: 'a', href: root_path}
+  end
+
+
+nav.pro-navbar.navbar.navbar-expand-lg.navbar-light class=(type ? "pro-navbar--#{type}" : '')
+
+  button.navbar-toggler[
+    type='button'
+    data-toggle='collapse'
+    data-target='.navbar-collapse'
+    ]
+    ^icon-bars
+
+  *brand class='navbar-brand h-bg--only' = t 'application.title'
+
+  .collapse.navbar-collapse.navbar-toggleable
+    ul.navbar-nav
+      - if current_user and current_user.staff?
+       li.nav-item: a.nav-link(href=admin_root_path): ^icon-cogs
+
+      li.nav-item class=link_status(about_path)
+        a.nav-link href=about_path = t 'statics.about.label'
+
+      - if Activity.roots.navigated.empty?
+        li.nav-item class=link_status(activities_path)
+          a.nav-link href=activities_path = t 'activities.index.label'
+      - else
+        li.nav-item.dropdown class=link_status(activities_path)
+          a.nav-link.dropdown-toggle(
+            href=activities_path
+            aria-haspopup='true'
+            aria-expanded='false'
+            data-toggle='dropdown'
+            ) = t 'activities.index.label'
+          .dropdown-menu
+            - for item in Activity.roots.navigated
+              a.dropdown-item(class=link_status_activity(item)
+                              href=activity_path(item)) = item.name
+            .dropdown-divider
+            a.dropdown-item.emulator(class=link_status(activities_path)
+                                     href=activities_path): ^icon-bars
+
+      - if Partner.permitted.empty?
+        li.nav-item class=link_status(permits_path)
+          a.nav-link href=permits_path = t 'permits.index.label'
+      - else
+        li.nav-item.dropdown class=link_status(permits_path)
+          a.nav-link.dropdown-toggle(
+            href=permits_path
+            aria-haspopup='true'
+            aria-expanded='false'
+            data-toggle='dropdown'
+            ) = t 'permits.index.label'
+          .dropdown-menu
+            - for item in Partner.permitted
+              a.dropdown-item(class=link_status_permit_partner(item.id)
+                              href=permits_path(partner: item.id)) = item.name
+            .dropdown-divider
+            a.dropdown-item.emulator(class=link_status(permits_path)
+                                     href=permits_path): ^icon-bars
+
+      li.nav-item[class=link_status(targets_path)]
+        a.nav-link href=targets_path = t 'targets.index.label'
+
+      li.nav-item[class=link_status(partners_path)]
+        a.nav-link href=partners_path = t 'partners.index.label'
+
+      li.nav-item[class=link_status(contact_path)]
+        a.nav-link href=contact_path = t 'contact.show.label'
+
+      li.nav-item.dropdown
+        ^icon-ellipsis-v.nav-link.h-onclick(
+          aria-haspopup='true'
+          aria-expanded='false'
+          data-toggle='dropdown'
+          )
+        .dropdown-menu.dropdown-menu-right
+          a.dropdown-item(href="#" ) Отзывы заказчиков
+          a.dropdown-item(href="#" ) Блог группы

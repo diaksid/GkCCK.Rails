@@ -1,0 +1,32 @@
+---
+ru:
+  articles:
+    index:
+      label: "Статьи"
+      title: "Статьи"
+      description: "Блог  группы компаний «ССК»"
+      header: "Блог ГК «ССК»"
+
+  activerecord:
+    models:
+      article:
+        one: "Статья"
+        few: "Статьи"
+        many: "Статей"
+        other: "Статьи"
+    attributes:
+      article:
+        published: "Опубликовано"
+        published_at: "Дата публикации"
+        navigated: "Навигация"
+        header: "Заголовок"
+        annotation: "Аннотация"
+        content: "Содержимое"
+        partial: "Шаблон"
+        created_at: "Создано"
+        updated_at: "Изменено"
+        image: "Баннер"
+
+  active_admin:
+    articles: "Статьи"
+...

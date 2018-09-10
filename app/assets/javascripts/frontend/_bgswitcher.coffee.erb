@@ -1,0 +1,49 @@
+((ProJ) ->
+  bgs =
+    root:
+      xl: [
+        '<%= asset_path('bg/home/xl/00.jpg') %>'
+        '<%= asset_path('bg/home/xl/01.jpg') %>'
+      ]
+      lg: [
+        '<%= asset_path('bg/home/lg/00.jpg') %>'
+        '<%= asset_path('bg/home/lg/01.jpg') %>'
+      ]
+      sm: [
+        '<%= asset_path('bg/home/sm/00.jpg') %>'
+        '<%= asset_path('bg/home/sm/01.jpg') %>'
+      ]
+    page:
+      xl: [
+        '<%= asset_path('bg/page/xl/00.jpg') %>'
+        '<%= asset_path('bg/page/xl/01.jpg') %>'
+        '<%= asset_path('bg/page/xl/02.jpg') %>'
+      ]
+      lg: [
+        '<%= asset_path('bg/page/lg/00.jpg') %>'
+        '<%= asset_path('bg/page/lg/01.jpg') %>'
+        '<%= asset_path('bg/page/lg/02.jpg') %>'
+      ]
+      sm: [
+        '<%= asset_path('bg/page/sm/00.jpg') %>'
+        '<%= asset_path('bg/page/sm/01.jpg') %>'
+        '<%= asset_path('bg/page/sm/02.jpg') %>'
+      ]
+
+
+  ProJ.fn.bgswitcher = ->
+    if location.pathname != '/contact'
+      type = (location.pathname == '/') and 'root' or 'page'
+      size = switch
+        when screen.width > 1200 then 'xl'
+        when screen.width > 768 then 'lg'
+        else
+          'sm'
+      $('.pro-header').bgswitcher
+        duration: 1000
+        interval: 15000
+        shuffle: no
+        images: bgs[type][size]
+    @
+
+) ProJ

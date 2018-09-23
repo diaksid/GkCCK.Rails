@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Rails GkCCK: development" uuid="4c0b35c7-4cf2-45ce-a7ae-0f6cb17ae2ec">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:__gkcck</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="Rails GkCCK: production" uuid="3bef47de-c77b-479c-869b-1d0ffab4d490">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:__gkcck</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="__gkcck@94.142.140.20" uuid="392aa8a3-1c54-4946-b690-37badb09c57c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://94.142.140.20:5432/__gkcck</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Rails GkCCK: test" uuid="37644e0c-5ac5-4b92-baaa-d7636178ffed">
+    <data-source source="LOCAL" name="Rails GkCCK Rails: production" uuid="d397784d-2078-4372-9532-5d309111dce2">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:__gkcck_test</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/__gkcck</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails GkCCK Rails: test" uuid="a1441e01-607e-489e-a752-5d03f29d4574">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/__gkcck_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails GkCCK Rails: development" uuid="d215bee6-a6c4-43e6-953c-039ae33af3c3">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/__gkcck</jdbc-url>
     </data-source>
   </component>
 </project>

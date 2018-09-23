@@ -132,7 +132,7 @@ yarn-error.log*
 /nginx.inc
 /*.code-workspace
 /.vscode/
+/.dumps/
 /.master/
 
 !.keep
-

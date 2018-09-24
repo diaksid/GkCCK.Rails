@@ -26,6 +26,7 @@ Rails.application.configure do
   }
   config.action_mailer.default_options = {
     to: ENV['MAILER_TO'],
+    cc: ENV['MAILER_CC'],
     sender: ENV['MAILER_USER_NAME']
   }
 end

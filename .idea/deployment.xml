@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="IHOR CCK dev" createEmptyFolders="true" exclude=".svn;.cvs;.idea;.DS_Store;.git*;.hg;.keep;*.md;*.sqlite3;node_modules">
+  <component name="PublishConfigData" serverName="IHOR CCK vps" createEmptyFolders="true" exclude=".svn;.cvs;.idea;.DS_Store;.git*;.hg;.keep;*.md;*.sqlite3;node_modules">
     <serverData>
       <paths name="IHOR CCK dev">
         <serverdata>
@@ -25,8 +25,13 @@
       <paths name="IHOR CCK vps">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/gkcck" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/gkcck/Gemfile.lock" />
+            <excludedPath path="/gkcck/db/schema.rb" />
+            <excludedPath path="/gkcck/.rubocop.yml" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="IHOR PRO dev">

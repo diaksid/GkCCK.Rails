@@ -1,26 +1,32 @@
 var path = require('path'),
-    gulp = require('gulp'),
-    root = path.dirname(__dirname);
+    gulp = require('gulp');
 
-var js = require(path.join(__dirname, 'utils', 'js')),
-    icon = require(path.join(__dirname, 'utils', 'icon'));
+var css = require('./utils/css'),
+    js = require('./utils/js'),
+    icon = require('./utils/icon');
 
-// ----------
+var root = path.dirname(__dirname);
 
 gulp.task('font:icons', function () {
-    icon.read(path.join(root, 'lib', 'assets'), path.join(__dirname, 'icons'));
+    icon.read(
+        path.join(root, 'lib', 'assets'),
+        path.join(__dirname, 'icons')
+    )
 });
 
-// ----------
+gulp.task('style:app', function () {
+    css.sass(path.join(root, 'public', 'stylesheets'), [
+        path.join(__dirname, 'stylesheets', '**.scss'),
+    ])
+});
 
 gulp.task('script:assets', function () {
     js(path.join(root, 'public', 'assets'), [
         path.join(__dirname, 'javascripts', '**'),
     ], {
         min: true
-    });
+    })
 });
-
 
 gulp.task('script:html5', function () {
     js(path.join(root, 'public', 'javascripts'), [
@@ -30,21 +36,31 @@ gulp.task('script:html5', function () {
         path.join(__dirname, 'vendor', 'html5', 'respond.js')
     ], {
         concat: 'html5bility'
-    });
+    })
 });
-
 
 gulp.task('script:flex', function () {
     js.ify(path.join(root, 'public', 'javascripts'), [
         path.join(__dirname, 'vendor', 'flex', 'index.js'),
     ], {
         basename: 'flexibility'
-    });
+    })
 });
 
-// ----------
 
 gulp.task('watch', function () {
+    gulp.watch([
+        path.join(__dirname, 'icons', '**')
+    ], [
+        'iconfont'
+    ]);
+
+    gulp.watch([
+        path.join(__dirname, 'stylesheets', '**')
+    ], [
+        'style:app'
+    ]);
+
     gulp.watch([
         path.join(__dirname, 'javascripts', '**')
     ], [
@@ -61,18 +77,12 @@ gulp.task('watch', function () {
         path.join(__dirname, 'vendor', 'flex', '**')
     ], [
         'script:flex'
-    ]);
-
-    gulp.watch([
-        path.join(__dirname, 'icons', '**')
-    ], [
-        'iconfont'
-    ]);
+    ])
 });
 
-// ----------
 
 gulp.task('default', [
+    'style:app',
     'script:html5',
     'script:flex'
 ]);

@@ -3,6 +3,24 @@ SitemapGenerator::Sitemap.default_host = "https://gkcck.ru"
 SitemapGenerator::Sitemap.compress = false # :all_but_first
 
 SitemapGenerator::Sitemap.create do
+  add about_path, priority: 0.3
+  add privacy_path, priority: 0.3
+  add contact_path, priority: 0.3
+
+  add activities_path, priority: 0.7, changefreq: 'daily'
+  Activity.published.find_each do |item|
+    add activity_path(item), lastmod: item.updated_at
+  end
+
+  add targets_path, priority: 0.7, changefreq: 'daily'
+  Target.published.find_each do |item|
+    add target_path(item), lastmod: item.updated_at
+  end
+
+  add permits_path, priority: 0.7, changefreq: 'daily'
+  Permit.published.find_each do |item|
+    add permit_path(item), lastmod: item.updated_at
+  end
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.

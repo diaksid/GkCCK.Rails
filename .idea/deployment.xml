@@ -32,6 +32,7 @@
             <excludedPath path="/gkcck/db/schema.rb" />
             <excludedPath path="/gkcck/.rubocop.yml" />
             <excludedPath path="/gkcck/yarn.lock" />
+            <excludedPath path="/gkcck/public/sitemap.xml" />
           </excludedPaths>
         </serverdata>
       </paths>

@@ -1,4 +1,6 @@
 class ContactController < ApplicationController
+  protect_from_forgery only: [:deliver]
+
   def show
     @schema = {page: 'ContactPage'}
     @title = t '.title'
@@ -10,14 +12,18 @@ class ContactController < ApplicationController
 
   def deliver
     @model = ContactForm.new(deliver_params)
-    if @model.valid?
-      if ContactMailer.contact_form(@model).deliver
-        flash[:notice] = t '.success'
+    if verify_recaptcha(model: @model)
+      if @model.valid?
+        if ContactMailer.contact_form(@model).deliver
+          flash[:notice] = t '.success'
+        else
+          flash[:alert] = t '.errors.send'
+        end
       else
-        flash[:alert] = t '.errors.send'
+        flash[:alert] = t '.errors.validation'
       end
     else
-      flash[:alert] = t '.errors.create'
+      flash[:alert] = t '.errors.recaptcha'
     end
     redirect_back fallback_location: contact_path
   end

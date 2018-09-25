@@ -7,8 +7,5 @@
 //= require ./jquery.bgswitcher.js
 
 
-//  require popper.js/dist/popper.js
+//= require popper.js/dist/umd/popper.js
 //= require ./bootstrap.js
-
-
-window.Popper = null;

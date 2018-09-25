@@ -52,10 +52,12 @@
   .touch {
     display: none;
   }
-  .dropdown-menu {
-    margin: 0;
-  }
-  .dropdown {
+
+  .dropdown.on-hover {
+    + .dropdown-menu {
+      margin: 0;
+    }
+
     &:hover {
       .dropdown-menu {
         display: block;

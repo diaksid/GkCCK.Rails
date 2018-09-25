@@ -50,7 +50,7 @@ css.less = function (dest, param, args) {
 
 css.sass = function (dest, param, args) {
     args = config.args(args, {
-        min: true,
+        min: false,
         sass: config.sass
     });
     if (dest && param) {

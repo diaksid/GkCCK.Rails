@@ -33,7 +33,7 @@ nav.pro-navbar.navbar.navbar-expand-lg.navbar-light class=(type ? "pro-navbar--#
         li.nav-item class=link_status(activities_path)
           a.nav-link href=activities_path = t 'activities.index.label'
       - else
-        li.nav-item.dropdown class=link_status(activities_path)
+        li.nav-item.dropdown.on-hover class=link_status(activities_path)
           a.nav-link.dropdown-toggle(
             href=activities_path
             aria-haspopup='true'
@@ -52,7 +52,7 @@ nav.pro-navbar.navbar.navbar-expand-lg.navbar-light class=(type ? "pro-navbar--#
         li.nav-item class=link_status(permits_path)
           a.nav-link href=permits_path = t 'permits.index.label'
       - else
-        li.nav-item.dropdown class=link_status(permits_path)
+        li.nav-item.dropdown.on-hover class=link_status(permits_path)
           a.nav-link.dropdown-toggle(
             href=permits_path
             aria-haspopup='true'
@@ -76,7 +76,7 @@ nav.pro-navbar.navbar.navbar-expand-lg.navbar-light class=(type ? "pro-navbar--#
       li.nav-item[class=link_status(contact_path)]
         a.nav-link href=contact_path = t 'contact.show.label'
 
-      li.nav-item.dropdown
+      li.nav-item.dropdown.on-hover
         ^icon-ellipsis-v.nav-link.h-onclick(
           aria-haspopup='true'
           aria-expanded='false'

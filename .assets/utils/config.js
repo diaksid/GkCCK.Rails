@@ -5,7 +5,8 @@ var path = require('path'),
         resolve: require('rollup-plugin-node-resolve')
     };
 
-var root = path.dirname(__dirname);
+var work = path.dirname(__dirname),
+    root = path.dirname(work);
 
 
 module.exports = {
@@ -15,8 +16,9 @@ module.exports = {
     },
 
     sass: [
-        path.join(root, 'stylesheets'),
-        path.join(root, 'vendor', 'stylesheets')
+        path.join(root, 'node_modules'),
+        path.join(work, 'stylesheets'),
+        path.join(work, 'vendor', 'stylesheets')
     ],
 
     cssnano: {
@@ -143,7 +145,7 @@ module.exports = {
         adds = adds || {};
         args = args || {};
         for (i in adds) {
-            args[i] = (typeof args[i] != 'undefined' && args[i] != null) ? args[i] : adds[i];
+            args[i] = (typeof args[i] !== 'undefined' && args[i] != null) ? args[i] : adds[i];
         }
         return args;
     },

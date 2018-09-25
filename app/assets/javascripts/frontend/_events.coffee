@@ -29,6 +29,7 @@
       .scroll()
       .lightbox()
       .redactor()
+    $('[data-tooltip]').tooltip placement: (n, e) -> e.dataset.tooltip or 'auto'
     $ window
       .scroll ProJ.fn.scroll
     @

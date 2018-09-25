@@ -11,28 +11,32 @@
   padding: 0;
   background: #fff;
   border: none;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  @include border-radius(0);
-  transition: all .1s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  border-radius: 0;
+  transition: all 0.1s;
 }
 
 .dropdown-item {
   padding: 1rem 1.25rem;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1rem;
-  transition: all .1s;
+  transition: all 0.1s;
+
   &.is-parent {
     color: $color-accent;
   }
+
   &.emulator {
     color: #000;
     background-color: #fdfdfd;
   }
+
   &:focus,
   &:hover {
     color: #fff;
     background-color: $link-color;
   }
+
   &.is-active,
   &.active {
     &,
@@ -54,7 +58,7 @@
   }
 
   .dropdown.on-hover {
-    + .dropdown-menu {
+    .dropdown-menu {
       margin: 0;
     }
 

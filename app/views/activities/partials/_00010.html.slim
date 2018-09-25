@@ -2,14 +2,9 @@ p Инженеру <strong>строительного контроля</strong>,
   жилищно-гражданского и производственного назначения,по основным видам нарушений при производстве <strong>земляных
   работ</strong>.
 
-h2.my-2 Перечень основных строительных нарушений (дефектов) при производстве земляных работ</h2>
+h2.mb-3 Перечень основных строительных нарушений (дефектов) при производстве земляных работ</h2>
 
-css:
-  .border-none {
-    border: none;
-  }
-
-table.table.table-condensed
+table.table.table-condensed.d-none.d-lg-table
   caption Земляные работы
 
   thead
@@ -30,7 +25,10 @@ table.table.table-condensed
       td
       td
       td
-        figure.banner.h-preload(title='земляные сооружения, основания и фундаменты не соответствуют проекту')
+        figure.banner.h-preload(
+          data-tooltip='left'
+          title='земляные сооружения, основания и фундаменты не соответствуют проекту'
+          )
           = render partial: 'attachments/canvas', object: @model.images[0],
                   locals: {class: ['banner__frame', 'img-fluid'],
                           width: 192,
@@ -55,7 +53,10 @@ table.table.table-condensed
       td.p-0
       td.p-0
       td(rowspan=11)
-        figure.banner.h-preload(title='нормативные требования по водопонижению, организации поверхностного стока и водоотвода')
+        figure.banner.h-preload(
+          data-tooltip='left'
+          title='нормативные требования по водопонижению, организации поверхностного стока и водоотвода'
+          )
           = render partial: 'attachments/canvas', object: @model.images[1],
                   locals: {class: ['banner__frame', 'img-fluid'],
                           width: 192,
@@ -107,7 +108,10 @@ table.table.table-condensed
       td 8.&nbsp;Отклонения уклона спланированной поверхности от проектного, кроме орошаемых земель:
       td Не должны превышать &plusmn;0.001 при отсутствии замкнутых понижений;
       td(rowspan=4)
-        figure.banner.h-preload(title='состояние откосов и дна котлованов и траншей')
+        figure.banner.h-preload(
+          data-tooltip='left'
+          title='состояние откосов и дна котлованов и траншей'
+          )
           = render partial: 'attachments/canvas', object: @model.images[2],
                   locals: {class: ['banner__frame', 'img-fluid'],
                           width: 192,
@@ -135,10 +139,15 @@ table.table.table-condensed
       td
       td
       td
-        figure.banner.h-preload(title='места устройства фундаментов и укладки трубопроводов')
+        figure.banner.h-preload(
+          data-tooltip='left'
+          title='места устройства фундаментов и укладки трубопроводов'
+          )
           = render partial: 'attachments/canvas', object: @model.images[3],
                   locals: {class: ['banner__frame', 'img-fluid'],
                           width: 192,
                           height: 144,
                           lightbox: "#{action_name}-lightbox",
                           links: {image: [600, 450]}}
+
+.d-lg-none.text-danger таблица доступна при ширине экрана не менее 1024 px

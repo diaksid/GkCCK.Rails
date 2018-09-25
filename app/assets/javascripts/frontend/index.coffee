@@ -7,16 +7,15 @@
 
 
 ((window, document, $, ProJ) ->
-  'use strict'
-
   turbo = window.Turbolinks?
   Turbolinks.supported = no if turbo and navigator.userAgent.match /Firefox\/(\d+)\./
 
   $ -> ProJ.fn.onready()
-  $(window).on 'load', ProJ.fn.onload
+  $(window).on 'load', ->
+    ProJ.fn.onload()
+    $('.pro-preload').fadeOut 'slow', -> turbo && document.documentElement.classList.add 'is-turbolinks'
 
   if turbo
-    # $('<div/>', class: 'pro-preload h-preload').appendTo 'body'
     $ document
       .on 'turbolinks:visit', ->
         turbo = 'visit'

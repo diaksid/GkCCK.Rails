@@ -1,5 +1,5 @@
-//= require jcarousel/core
-//= require jcarousel/core_plugin
-//= require jcarousel/control
-//= require jcarousel/pagination
-//= require jcarousel/autoscroll
+//= require jcarousel/core.js
+//= require jcarousel/core_plugin.js
+//= require jcarousel/control.js
+//= require jcarousel/pagination.js
+//= require jcarousel/autoscroll.js

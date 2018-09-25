@@ -14,7 +14,6 @@
     # ProJ('.pro-header--home').canvasSnow()
     ProJ('.pro-header--grid').canvasGrid()
     $('.pro-navbar').addClass 'h-gradient--top'
-    # $('.pro-preload').fadeOut 'slow'
     @
 
 

@@ -1,14 +1,14 @@
 //= require_self
 
-// = require wow
+// = require wowjs/dist/wow.js
 
 //= require jquery3
-//= require ./jquery/easing
-//= require ./jquery/bgswitcher
-// require_tree ./jquery
+//= require jquery.easing/jquery.easing.js
+//= require ./jquery.bgswitcher.js
 
-//  require ./popper
-//= require ./bootstrap
+
+//  require popper.js/dist/popper.js
+//= require ./bootstrap.js
 
 
 window.Popper = null;

@@ -3,9 +3,9 @@ $sidebar-width: 320px;
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-@import "bootstrap/functions";
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
 @import "helpers";
 @import "content";

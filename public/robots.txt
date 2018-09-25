@@ -1,4 +1,8 @@
 # //www.robotstxt.org/robotstxt.html
 
+Sitemap: https://gkcck.ru/sitemap.xml
+
 User-agent: *
-Disallow:
+Disallow: /admin
+
+Host: gkcck.ru

@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://dev.gkcck.ru"
+SitemapGenerator::Sitemap.default_host = "https://gkcck.ru"
 SitemapGenerator::Sitemap.compress = false # :all_but_first
 
 SitemapGenerator::Sitemap.create do

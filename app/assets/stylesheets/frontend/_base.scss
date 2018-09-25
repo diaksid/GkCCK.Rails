@@ -10,20 +10,25 @@ body {
   font-family: "Open Sans", $font-family-base;
 }
 
+.pro-preload {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: image_url('loading/0.svg') center no-repeat rgba(black, 0.9);
+  background-size: 5%;
+
+  .is-turbolinks & {
+    display: none;
+  }
+}
+
 .pro-content {
   padding-top: $spacer * 3.5;
   padding-bottom: $spacer * 3;
   @include clearfix;
-}
-
-.pro-preload {
-  position: fixed;
-  z-index: 2 * $zindex-fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: $gray-300;
 }
 
 .pro-messages {
@@ -31,11 +36,14 @@ body {
   z-index: $zindex-fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  padding: .5rem ($grid-gutter-width / 2);
+  pointer-events: none;
 
   .alert {
-    margin-top: .125rem;
     width: 80%;
     max-width: 32rem;
     line-height: 1.875rem;
+    pointer-events: auto;
   }
 }

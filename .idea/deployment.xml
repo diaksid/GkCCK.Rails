@@ -31,6 +31,7 @@
             <excludedPath path="/gkcck/Gemfile.lock" />
             <excludedPath path="/gkcck/db/schema.rb" />
             <excludedPath path="/gkcck/.rubocop.yml" />
+            <excludedPath path="/gkcck/yarn.lock" />
           </excludedPaths>
         </serverdata>
       </paths>

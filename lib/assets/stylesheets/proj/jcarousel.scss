@@ -1,14 +1,14 @@
+$icon-class-iclude: false;
+
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
-
-$icon-class-iclude: false;
 @import "iconfont/icons";
 
 // -------------------------
 
 [data-carousel] {
-  padding: 2rem .25rem .5rem .5rem;
+  padding: 2rem 0.25rem 0.5rem 0.5rem;
 
   .outer {
     position: relative;
@@ -22,9 +22,9 @@ $icon-class-iclude: false;
 
   .item {
     float: left;
-    margin-right: .25rem;
-    padding: .25rem;
-    transition: all .4s;
+    margin-right: 0.25rem;
+    padding: 0.25rem;
+    transition: all 0.4s;
   }
 
   .control {
@@ -33,11 +33,12 @@ $icon-class-iclude: false;
   }
 
   .icon {
-    padding: .5rem;
+    padding: 0.5rem;
     color: #ddd;
     font-size: 1rem;
     cursor: pointer;
-    transition: all .2s;
+    transition: all 0.2s;
+
     &:hover {
       color: $gray-300;
     }
@@ -47,16 +48,18 @@ $icon-class-iclude: false;
   .next,
   .pagination {
     position: absolute;
-    top: .5rem;
+    top: 0.5rem;
   }
 
   .prev {
     right: 5rem;
+
     @include icon-step-backward();
   }
 
   .next {
     right: 0;
+
     @include icon-step-forward();
   }
 
@@ -64,16 +67,21 @@ $icon-class-iclude: false;
     margin: 0;
     padding: 0;
     left: 0;
+
     .icon {
-      margin-right: .25rem;
-      font-size: .875rem;
+      margin-right: 0.25rem;
+      font-size: 0.875rem;
+
       @include icon-square-o();
+
       &:hover {
         @include icon-square();
       }
+
       &.active {
         color: #bbb;
         cursor: default;
+
         @include icon-square();
       }
     }

@@ -131,7 +131,7 @@ nginx.inc
 *.code-workspace
 .vscode/
 
-.master/*
+.master/
 !.master/site.txt
 
 !.keep

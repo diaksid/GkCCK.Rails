@@ -99,7 +99,6 @@ pickle-email-*.html
 
 # If using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
-*.bowerrc
 
 # Ignore pow environment settings
 .powenv
@@ -130,7 +129,6 @@ yarn-error.log*
 nginx.inc
 *.code-workspace
 .vscode/
-.dumps/
 .master/
 
 !.keep

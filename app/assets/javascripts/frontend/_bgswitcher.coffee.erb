@@ -1,6 +1,8 @@
 ((ProJ) ->
   bgs =
     root:
+      interval: 15000
+      shuffle: no
       xl: [
         '<%= asset_path('bg/home/xl/00.jpg') %>'
         '<%= asset_path('bg/home/xl/01.jpg') %>'
@@ -14,6 +16,8 @@
         '<%= asset_path('bg/home/sm/01.jpg') %>'
       ]
     page:
+      interval: 7500
+      shuffle: yes
       xl: [
         '<%= asset_path('bg/page/xl/00.jpg') %>'
         '<%= asset_path('bg/page/xl/01.jpg') %>'
@@ -33,7 +37,7 @@
 
   ProJ.fn.bgswitcher = ->
     if location.pathname != '/contact'
-      type = (location.pathname == '/') and 'root' or 'page'
+      type = (location.pathname is '/') and 'root' or 'page'
       size = switch
         when screen.width > 1200 then 'xl'
         when screen.width > 768 then 'lg'
@@ -41,8 +45,8 @@
           'sm'
       $('.pro-header').bgswitcher
         duration: 1000
-        interval: 15000
-        shuffle: no
+        interval: bgs[type].interval
+        shuffle: bgs[type].shuffle
         images: bgs[type][size]
     @
 

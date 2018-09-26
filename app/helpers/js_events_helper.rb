@@ -5,8 +5,9 @@ module JsEventsHelper
     content_tag :script do
       <<-JAVASCRIPT.squish.html_safe
       (function (w, d) {
-        var t = w.ontouchstart || (w.DocumentTouch && d instanceof DocumentTouch);
-        d.documentElement.className = 'is-js is-touch' + (t ? '' : '--not');
+        d.documentElement.className = 'is-js is-touch'
+          + (w.ontouchstart || (w.DocumentTouch && d instanceof DocumentTouch) ? '' : '--not')
+          + ((/msie|rv:11/i).test(navigator.userAgent) ? ' is-ie' : '')
       })(window, document)
       JAVASCRIPT
     end

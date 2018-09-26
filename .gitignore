@@ -124,6 +124,7 @@ yarn-error.log*
 /lib/assets/fonts/
 /public/assets/
 /public/javascripts/
+/public/stylesheets/
 
 *.sh
 nginx.inc

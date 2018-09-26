@@ -7,6 +7,7 @@ var css = require('./utils/css'),
 
 var root = path.dirname(__dirname);
 
+
 gulp.task('font:icons', function () {
     icon.read(
         path.join(root, 'lib', 'assets'),
@@ -14,11 +15,13 @@ gulp.task('font:icons', function () {
     )
 });
 
+
 gulp.task('style:app', function () {
     css.sass(path.join(root, 'public', 'stylesheets'), [
         path.join(__dirname, 'stylesheets', '**.scss'),
     ])
 });
+
 
 gulp.task('script:assets', function () {
     js(path.join(root, 'public', 'assets'), [
@@ -27,6 +30,7 @@ gulp.task('script:assets', function () {
         min: true
     })
 });
+
 
 gulp.task('script:html5', function () {
     js(path.join(root, 'public', 'javascripts'), [

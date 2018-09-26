@@ -132,4 +132,5 @@ nginx.inc
 .vscode/
 .master/
 
+!.master/site.txt
 !.keep

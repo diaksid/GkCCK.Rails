@@ -1,17 +1,18 @@
-@import "variables";
+$icon-class-iclude: false;
 
+@import "variables";
+//
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
-
-$icon-class-iclude: false;
+//
 @import "iconfont/icons";
-
+//
 @import "base";
 @import "forms";
 @import "helpers/base";
 @import "helpers/type";
-
+//
 @import "components/banner";
 @import "components/albom";
 @import "components/catalog";
@@ -23,9 +24,9 @@ $icon-class-iclude: false;
 @import "components/header";
 @import "components/navbar";
 @import "components/footer";
-
+//
 @import "wrappers/jcarousel";
 @import "wrappers/yandex";
-
+//
 @import "content/statics";
 @import "content/contact";

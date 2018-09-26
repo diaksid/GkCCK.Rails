@@ -1,6 +1,5 @@
 - params = request.params[:contact] || {}
 
-
 .row.justify-content-sm-center
   form#form-contact.col-sm-10.col-lg-8.col-xl-6(
     method='post'
@@ -11,8 +10,7 @@
     fieldset.form-group
       label.sr-only[for='contact-name'] = t 'contact_form.name.label'
       .input-group
-        .input-group-prepend
-          ^icon-user.icon--fw.input-group-text
+        .input-group-prepend: ^icon-user.icon--fw.input-group-text
         input&text#contact-name.form-control[
           name='contact[name]'
           title=t('contact_form.name.valid')
@@ -25,8 +23,7 @@
     fieldset.form-group
       label.sr-only[for='contact-email'] = t 'contact_form.email.label'
       .input-group
-        .input-group-prepend
-          ^icon-envelope.icon--fw.input-group-text
+        .input-group-prepend: ^icon-envelope.icon--fw.input-group-text
         input&email#contact-email.form-control[
           name='contact[email]'
           title=t('contact_form.email.valid')
@@ -38,8 +35,7 @@
     fieldset.form-group
       label.sr-only[for='contact-phone'] = t 'contact_form.phone.label'
       .input-group
-        .input-group-prepend
-          ^icon-phone.icon--fw.input-group-text
+        .input-group-prepend: ^icon-phone.icon--fw.input-group-text
         input&tel#contact-phone.form-control[
           name='contact[phone]'
           title=t('contact_form.phone.valid')
@@ -51,8 +47,7 @@
     fieldset.form-group
       label.sr-only[for='contact-subject'] = t 'contact_form.subject.label'
       .input-group
-        .input-group-prepend
-          ^icon-tag.icon--fw.input-group-text
+        .input-group-prepend: ^icon-tag.icon--fw.input-group-text
         input&text#contact-subject.form-control[
           name='contact[subject]'
           placeholder=t('contact_form.subject.label')
@@ -86,7 +81,7 @@
 
     fieldset.form-group.form-check
       input&checkbox#form-checkbox.form-check-input>[onchange='privacy_onchange(this)']
-      label.form-check-label.text-muted.font-weight-light.small(for='form-checkbox')
+      label.form-check-label.text-muted.font-weight-light(for='form-checkbox')
         = t 'contact_form.privacy'
 
 javascript:

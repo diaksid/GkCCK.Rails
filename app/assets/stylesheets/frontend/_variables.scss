@@ -1,32 +1,30 @@
-// Typography
-// $font-family-base: "Open Sans";
-
-// Colors
 $color-accent:            #d00016;
 $color-active:            #077;
-$input-color-placeholder: transparentize(#799, .5);
 
-// Nav
+$font-family-sans-serif:  "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$input-color-placeholder: transparentize(#799, 0.5);
+
 $dropdown-bg: #fcfcfc;
 
-// Navbar
 $navbar-height:       112px;
 $navbar-fixed-height: 64px;
 
-$navbar-light-color:          transparentize(#f7f7f9, .05);
+$navbar-light-color:          transparentize(#f7f7f9, 0.05);
 $navbar-light-hover-color:    $navbar-light-color;
-$navbar-light-active-color:   transparentize(#fff, .05);
-$navbar-light-disabled-color: transparentize(#eceeef, .05);
+$navbar-light-active-color:   transparentize(#fff, 0.05);
+$navbar-light-disabled-color: transparentize(#eceeef, 0.05);
 
-// Breadcrumbs
-$breadcrumb-padding-y:              .5rem;
+$breadcrumb-padding-y:              0.5rem;
 $breadcrumb-padding-x:              0;
 $breadcrumb-margin-bottom:          0;
 $breadcrumb-bg:                     transparent;
 $breadcrumb-border-radius:          0;
 
-
-// Pagination
 $pagination-padding-x:     1rem;
 $pagination-active-bg:     $color-accent;
 $pagination-active-border: $color-accent;
+
+$media-margin-top:            2rem;
+$media-heading-margin-bottom: 0.75rem;
+$media-alignment-padding-x:   1rem;

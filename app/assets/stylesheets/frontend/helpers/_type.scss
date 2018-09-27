@@ -4,22 +4,26 @@ button,
 .h-onclick,
 .btn {
   outline: 0 !important;
+
   &:hover,
   &:focus {
     text-decoration: none;
   }
+
   &.h-text--href,
   .h-text--href & {
     &.is-parent,
     .is-parent & {
-      color: transparentize($color-active, .1) !important;
+      color: transparentize($color-active, 0.1) !important;
     }
+
     &:hover {
-      color: transparentize($link-color, .1) !important;
+      color: transparentize($link-color, 0.1) !important;
     }
+
     &.is-active,
     .is-active & {
-      color: transparentize($color-accent, .1) !important;
+      color: transparentize($color-accent, 0.1) !important;
     }
   }
 }
@@ -34,7 +38,8 @@ ol,
 ul {
   &.h-push {
     > li {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -46,7 +51,8 @@ dl {
   &.h-push {
     > dt,
     > dd {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -59,9 +65,11 @@ dl {
     &-base {
       font-size: $font-size-base;
     }
+
     &-lg {
       font-size: $font-size-lg;
     }
+
     &-sm {
       font-size: $font-size-sm;
     }
@@ -72,12 +80,15 @@ dl {
   &--white {
     color: $gray-100;
   }
+
   &--accent {
     color: $color-accent;
   }
+
   &--active {
     color: $color-active;
   }
+
   &--href:hover {
     color: $link-hover-color;
   }
@@ -85,9 +96,11 @@ dl {
 
 .h-overflow {
   overflow: hidden;
+
   &--x {
     overflow-x: hidden;
   }
+
   &--y {
     overflow-y: hidden;
   }

@@ -10,7 +10,7 @@
 
   &__frame {
     display: inline-block;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     will-change: transform;
   }
 
@@ -25,8 +25,8 @@
     color: $gray-100;
     font-size: 13px;
     font-weight: 500;
-    background: rgba(0, 0, 0, .2);
-    transition: all .4s;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.4s;
     will-change: background-color;
   }
 
@@ -34,8 +34,9 @@
     .banner__frame {
       transform: scale(1.05);
     }
+
     .banner__title {
-      background: rgba(0, 0, 0, .5);
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 }

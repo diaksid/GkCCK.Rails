@@ -100,7 +100,7 @@
       background-color: $gray-500;
     }
 
-    &__under-construction {
+    /*&__under-construction {
       position: relative;
       z-index: -1;
 
@@ -108,6 +108,6 @@
 
       background: 0 0 no-repeat transparent;
       background-image: image_url('under-construction.png');
-    }
+    }*/
   }
 }

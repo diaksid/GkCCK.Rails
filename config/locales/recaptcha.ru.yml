@@ -1,0 +1,7 @@
+---
+ru:
+  recaptcha:
+    errors:
+      verification_failed: "Код reCAPTCHA неверен или отсутствует..."
+      recaptcha_unreachable: "Код reCAPTCHA устрел..."
+...

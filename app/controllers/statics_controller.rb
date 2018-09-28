@@ -1,10 +1,10 @@
 class StaticsController < ApplicationController
   def home
     @title = t '.title'
-    @label = nil
     @keywords = t '.keywords', default: ''
     @description = t '.description', default: ''
     @header = t '.header'
+    @suffix = nil
 
     @breadcrumbs = nil
 
@@ -23,7 +23,6 @@ class StaticsController < ApplicationController
 
   def about
     @title = t '.title'
-    @label = t '.label'
     @keywords = t '.keywords', default: ''
     @description = t '.description', default: ''
     @header = t '.header'
@@ -32,7 +31,6 @@ class StaticsController < ApplicationController
 
   def privacy
     @title = t '.title'
-    @label = t '.label'
     @keywords = t '.keywords', default: ''
     @description = t '.description', default: ''
     @header = t '.header'

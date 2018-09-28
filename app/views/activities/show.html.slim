@@ -11,7 +11,7 @@
   .pro-content.container
     - root = @model.is_root? ? @model : @model.parent
     - if root.has_children?
-      .dropdown.float-md-right.mb-4
+      .dropdown.float-md-right.ml-md-3.mb-3
         button#children.btn.btn-primary.dropdown-toggle(
           data={toggle: :dropdown}
           aria={haspopup: :false, expanded: :false}

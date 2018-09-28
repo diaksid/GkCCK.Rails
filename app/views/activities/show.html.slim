@@ -23,25 +23,8 @@
             - else
               a.dropdown-item href=activity_path(item) == item.name
 
-    /- if @model.has_children?
-      .dropdown.float-md-right.mb-4
-        button#children@button.btn.btn-primary.dropdown-toggle(
-          data={toggle: :dropdown}
-          aria={haspopup: :false, expanded: :false}
-          ) Дополнительная информация
-        .dropdown-menu.dropdown-menu-right
-          - for item in @model.children
-            a.dropdown-item href=activity_path(item) == item.name
-
-    /.float-left.d-none.d-md-block.pr-4.pb-2
-      .banner.img-thumbnail.h-preload
-        = render partial: 'attachments/canvas', object: root.image,
-                 locals: {class: ['banner__frame'],
-                          lightbox: "#{action_name}-lightbox",
-                          links: {thumbnail: true}}
-
-    /- if @model.is_root?
-      .banner.img-thumbnail.d-none.d-md-block.float-left.mr-4.h-preload
+    - if @model.is_root?
+      .banner.img-thumbnail.d-none.d-md-block.float-left.mr-3.h-preload
         = render partial: 'attachments/canvas', object: @model.image,
                 locals: {class: ['banner__frame'],
                          lightbox: "#{action_name}-lightbox",

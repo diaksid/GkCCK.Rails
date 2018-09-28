@@ -1,24 +1,55 @@
 - cache @model do
+  ruby:
+    importance = ['icon-star-o',
+                  'icon-star-half-o',
+                  'icon-star']
+
 
   .pro-content.container
-    .banner.img-thumbnail class=(@model.image.attached? && 'h-preload')
-      - attached = @model.image.attached?
-      canvas.banner__frame(
-        class=(attached ? 'h-bg--cover' : 'h-bg--no-image')
-        width= 192
-        height= 192
-        data-lazy=(attached && url_for(@model.image.variant resize_to_fill 192))
-        data-lightbox=attached
-        data-lightbox-href=(attached && url_for(@model.image.variant resize_to_fill 800, 600))
-        )
-      - if attached
-        link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)
-        link%image href=url_for(@model.image.variant resize_to_fill 800, 600)
+    .clearfix
+      .banner.img-thumbnail.float-md-left.mr-md-4.mb-3 class=(@model.image.attached? && 'h-preload')
+        - attached = @model.image.attached?
+        canvas.banner__frame(
+          class=(attached ? 'h-bg--cover' : 'h-bg--no-image')
+          width= 192
+          height= 192
+          data-lazy=(attached && url_for(@model.image.variant resize_to_fill 192))
+          data-lightbox=attached
+          data-lightbox-href=(attached && url_for(@model.image.variant resize_to_fill 800, 600))
+          )
+        - if attached
+          link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)
+          link%image href=url_for(@model.image.variant resize_to_fill 800, 600)
 
-        /== @model.content.squish
-        /- unless @model.images.empty?
-          .c-content__images.mdl-grid
-            = render partial: 'images/canvas', collection: @model.images, cached: true,
-                    layout: 'images/thumbnail',
-                    locals: {class_name: 'c-img--response',
-                            lightbox: "#{action_name}-lightbox"}
+      - unless @model.email.empty?
+        .mb-3
+          span.font-weight-bold> Email:
+          = @model.email
+      - unless @model.phone.empty?
+        .mb-3
+          span.font-weight-bold> Телефон:
+          = @model.phone
+      - unless @model.address.empty?
+        .mb-3
+          span.font-weight-bold> Адрес:
+          = @model.address
+      - unless @model.website.empty?
+        .mb-3
+          span.font-weight-bold> Сайт:
+          = @model.website
+
+    - unless @model.content.blank?
+      == @model.content.squish
+
+    - unless @model.targets.empty?
+      - for item in @model.targets
+        a.d-flex.align-items-center.mt-3 href=target_path(item)
+          ^icon-building-o.icon--2x.text-info
+          .flex-grow-1.mx-3 = item.name
+          .icon.text-danger class=importance[item.importance]
+
+    - unless @model.permits.empty?
+      - for item in @model.permits
+        a.d-flex.align-items-center.mt-3 href=permit_path(item)
+          ^icon-certificat.icon--2x.text-success
+          .flex-grow-1.lead.h-duplet.ml-3 == item.header || item.name

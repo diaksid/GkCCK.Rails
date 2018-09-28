@@ -27,11 +27,6 @@ html(
       content= 'width=device-width, initial-scale=1'
       )
 
-    - unless @description.blank?
-      meta(
-        name='description'
-        content=@description
-        )
     title
       = @title.blank? ? t('application.title') : @title
       = @suffix.blank? ? '' : " · #{@suffix}"
@@ -39,6 +34,11 @@ html(
       meta(
         name='robots'
         content=@robots
+        )
+    - unless @description.blank?
+      meta(
+        name='description'
+        content=@description
         )
     - unless @keywords.blank?
       meta(

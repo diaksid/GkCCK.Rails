@@ -21,13 +21,13 @@ ruby:
                                   thumbnail: true}}
 
     .catalog__content
-      h3%name.mb-3: a%url href=path = partner.name
+      h3%name.mb-3: a%url.h-text--href href=path = partner.name
       - for item in partner.targets
-        a.item href=target_path(item)
+        a.item.h-text--href href=target_path(item)
           ^icon-building-o.text-info
           .flex-grow-1.mx-3  = item.name
           .icon.text-danger class=importance[item.importance]
       - for item in partner.permits
-        a.item href=permit_path(item)
+        a.item.h-text--href href=permit_path(item)
           ^icon-certificat.text-success
           .flex-grow-1.lead.h-duplet.ml-3 == item.header || item.name

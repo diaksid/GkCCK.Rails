@@ -6,50 +6,64 @@
 
 
   .pro-content.container
-    .clearfix
+    section.clearfix(
+      itemscope
+      itemprop='organization'
+      itemtype='http://schema.org/Organization'
+      )
+      meta%name content=@model.name
       .banner.img-thumbnail.float-md-left.mr-md-4.mb-3 class=(@model.image.attached? && 'h-preload')
-        - attached = @model.image.attached?
-        canvas.banner__frame(
-          class=(attached ? 'h-bg--cover' : 'h-bg--no-image')
-          width= 192
-          height= 192
-          data-lazy=(attached && url_for(@model.image.variant resize_to_fill 192))
-          data-lightbox=attached
-          data-lightbox-href=(attached && url_for(@model.image.variant resize_to_fill 800, 600))
-          )
-        - if attached
-          link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)
-          link%image href=url_for(@model.image.variant resize_to_fill 800, 600)
+        = render partial: 'attachments/canvas', object: @model.image,
+                locals: {class: ['banner__frame'],
+                        links: {image: 192,
+                                thumbnail: true}}
 
       - unless @model.email.empty?
         .mb-3
           span.font-weight-bold> Email:
-          = @model.email
+          span%email = @model.email
       - unless @model.phone.empty?
         .mb-3
           span.font-weight-bold> Телефон:
-          = @model.phone
+          span%telephone = @model.phone
       - unless @model.address.empty?
         .mb-3
           span.font-weight-bold> Адрес:
-          = @model.address
+          span%address = @model.address
       - unless @model.website.empty?
         .mb-3
           span.font-weight-bold> Сайт:
-          = @model.website
+          span%url = @model.website
+      /- unless @model.geo.empty?
 
     - unless @model.content.blank?
-      == @model.content.squish
+      section.h-text--readable == @model.content.squish
 
-    - unless @model.targets.empty?
-      - for item in @model.targets
-        a.d-flex.align-items-center.mt-3 href=target_path(item)
-          ^icon-building-o.icon--2x.text-info
-          .flex-grow-1.mx-3 = item.name
-          .icon.text-danger class=importance[item.importance]
-
-    - unless @model.permits.empty?
-      - for item in @model.permits
-        a.d-flex.align-items-center.mt-3 href=permit_path(item)
-          ^icon-certificat.icon--2x.text-success
-          .flex-grow-1.lead.h-duplet.ml-3 == item.header || item.name
+    - unless @model.targets.empty? && @model.permits.empty?
+      section(
+        itemscope
+        itemtype='http://schema.org/DataCatalog'
+        )
+        - unless @model.permits.empty?
+          - for item in @model.permits
+            %dataset(
+              itemscope
+              itemtype='http://schema.org/Dataset'
+              )
+              - path = permit_path item
+              a%url.h-text--href href=path
+                ^icon-certificat.icon--2x.text-success
+                %name.h-duplet == item.header || item.name
+              meta%mainEntityOfPage content=path
+        - unless @model.targets.empty?
+          - for item in @model.targets
+            %dataset(
+              itemscope
+              itemtype='http://schema.org/Dataset'
+              )
+              - path = target_path item
+              a%url.h-text--href href=path
+                ^icon-building-o.icon--2x.text-info
+                %name = item.name
+                .icon.text-danger class=importance[item.importance]
+              meta%mainEntityOfPage content=path

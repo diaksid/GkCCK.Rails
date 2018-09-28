@@ -1,0 +1,43 @@
+.partners__index {
+  .catalog__content {
+    width: 50%;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: .5rem 1rem;
+
+      .icon-building-o {
+        font-size: 150%;
+      }
+
+      .icon-certificat {
+        font-size: 175%;
+      }
+
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+  }
+}
+
+.partners__show {
+  [itemprop=dataset] {
+    [itemprop=url] {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+
+    [itemprop=name] {
+      flex-grow: 1;
+      margin: 0 1rem;
+      font-size: 1.25rem;
+    }
+  }
+}

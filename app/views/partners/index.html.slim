@@ -1,24 +1,4 @@
 - cache @models do
 
-  scss:
-    .catalog__content {
-      width: 50%;
-      .item {
-        display: flex;
-        align-items: center;
-        padding: .5rem .5rem .5rem 1rem;
-        .icon {
-          font-size: 150%;
-          &.icon-certificat {
-            font-size: 175%;
-          }
-        }
-        &:hover {
-          background-color: #fafafa;
-        }
-      }
-    }
-
-
   .pro-content
-    .catalog.catalog--striped = render @models, cached: true
+    .catalog.catalog--striped = render @models

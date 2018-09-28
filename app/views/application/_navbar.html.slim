@@ -77,11 +77,11 @@ nav.pro-navbar.navbar.navbar-expand-lg.navbar-light class=(type ? "pro-navbar--#
         a.nav-link href=contact_path = t 'contact.show.label'
 
       li.nav-item.dropdown.on-hover
-        ^icon-ellipsis-v.nav-link.h-onclick(
+        span@button.nav-link(
           aria-haspopup='true'
           aria-expanded='false'
           data-toggle='dropdown'
-          )
+          ): ^icon-ellipsis-v
         .dropdown-menu.dropdown-menu-right
           a.dropdown-item(href="#" ) Отзывы заказчиков
           a.dropdown-item(href="#" ) Блог группы

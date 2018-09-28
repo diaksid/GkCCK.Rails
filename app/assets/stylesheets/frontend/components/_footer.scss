@@ -1,7 +1,6 @@
-// Footer
 .pro-footer {
   position: relative;
-  color: $gray-600;
+  color: $gray-500;
   background: $gray-900;
 
   [class^="col-"] {
@@ -20,81 +19,45 @@
       color: $color-accent;
     }
   }
+}
 
-  .navigation {
-    padding-top: 1rem;
-    padding-bottom: .5rem;
-    font-size: $font-size-sm;
-    line-height: 1.5 * $spacer;
+.pro-footer__navigation {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: $font-size-sm;
+  line-height: 1.5 * $spacer;
 
-    h3 {
-      margin: .5rem 0 1rem;
-      color: #888;
-      font-size: .875rem;
-      font-weight: bold;
-    }
-
-    .nav {
-      margin-bottom: 1rem;
-      a {
-        display: block;
-        padding: .5rem 0;
-      }
-    }
-
-    .business {
-      .icon {
-        margin-right: .5rem;
-      }
-    }
-
-    .contact {
-      margin-bottom: .5rem;
-
-      a {
-        font-size: $font-size-sm;
-      }
-    }
+  h3 {
+    margin: 0.5rem 0 1rem;
+    color: #888;
+    font-size: 0.875rem;
+    font-weight: bold;
   }
 
-  .copyright {
-    color: $gray-600;
-    font-size: $font-size-sm;
-    line-height: 1rem;
-    border-top: 1px solid $gray-700;
+  .nav {
+    margin-bottom: 1rem;
 
     a {
-      color: $gray-500;
-    }
-
-    .icon {
-      margin-right: 1rem;
-      font-size: 1.25rem;
-    }
-
-    .onclick {
-      display: none;
-
-      .is-js & {
-        display: inline-block;
-        transition: all .4s;
-
-        &:hover,
-        &:focus {
-          color: $link-hover-color;
-          transform: scale(1.1);
-        }
-      }
-    }
-
-    .develop {
-      color: #055;
-      font-size: $font-size-sm;
-      font-weight: 600;
+      display: block;
+      padding: 0.5rem 0;
     }
   }
 
-  [aria-label=social] {
+  .business {
+    .icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .contact {
+    margin-bottom: 0.5rem;
+
+    a {
+      font-size: $font-size-sm;
+    }
+  }
+
+  [aria-label="social"] {
     margin: 1rem 0;
 
     .icon {
@@ -107,9 +70,39 @@
   }
 }
 
+.pro-footer__copyright {
+  color: $gray-700;
+  font-size: $font-size-sm;
+  line-height: 1rem;
+  border-top: 1px solid $gray-700;
+
+  a {
+    color: $gray-500;
+
+    &.develop {
+      color: #055;
+      font-size: $font-size-sm;
+      font-weight: 600;
+    }
+  }
+
+  .icon {
+    margin-right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .onclick {
+    display: none;
+
+    .is-js & {
+      display: inline-block;
+    }
+  }
+}
+
 .pro-yandex-search {
   display: block;
-  margin: 2.75rem 0 .5rem;
+  margin: 2.75rem 0 0.5rem;
   line-height: 1rem;
 
   button,
@@ -121,7 +114,7 @@
 
   button {
     padding: 8px;
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
 
   input {

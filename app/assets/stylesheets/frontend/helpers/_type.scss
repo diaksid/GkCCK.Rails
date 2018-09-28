@@ -1,36 +1,6 @@
-a,
-input,
-button,
-.h-onclick,
-.btn {
-  outline: 0 !important;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-
-  &.h-text--href,
-  .h-text--href & {
-    &.is-parent,
-    .is-parent & {
-      color: transparentize($color-active, 0.1) !important;
-    }
-
-    &:hover {
-      color: transparentize($link-color, 0.1) !important;
-    }
-
-    &.is-active,
-    .is-active & {
-      color: transparentize($color-accent, 0.1) !important;
-    }
-  }
-}
-
 p {
   &.h-push {
-    line-height: $line-height-base * 1.2;
+    line-height: $line-height-base * 1.25;
   }
 }
 
@@ -38,7 +8,7 @@ ol,
 ul {
   &.h-push {
     > li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
 
       &:last-child {
         margin-bottom: 0;
@@ -51,7 +21,7 @@ dl {
   &.h-push {
     > dt,
     > dd {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
 
       &:last-child {
         margin-bottom: 0;
@@ -89,19 +59,41 @@ dl {
     color: $color-active;
   }
 
-  &--href:hover {
-    color: $link-hover-color;
+  &--href {
+    color: $link-color;
   }
 }
 
-.h-overflow {
-  overflow: hidden;
+.is-active,
+.active {
+  cursor: default;
+}
 
-  &--x {
-    overflow-x: hidden;
+a,
+input,
+button,
+.h-onclick,
+.btn {
+  outline: 0 !important;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
   }
 
-  &--y {
-    overflow-y: hidden;
+  &.is-parent,
+  .is-parent > & {
+    color: $color-active;
+  }
+
+  &:hover {
+    color: $link-color;
+  }
+
+  &.is-active,
+  .is-active > &,
+  &.active,
+  .active > & {
+    color: $color-accent;
   }
 }

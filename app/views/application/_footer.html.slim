@@ -1,97 +1,96 @@
-footer.pro-footer.text-href
+footer.pro-footer
 
   .ribbon.ribbon--dark.ribbon--poster.h-onclick data-scroll='#' В начало
 
 
-  .content.text-href
-    .navigation.container
-      .row
-        .info.col-xs-12.col-md-4
-          h3 Информация
-          nav.nav.flex-column
-            a[class=link_status(about_path)
-              href=about_path
-              ] = t 'statics.about.label'
-            a[class=link_status(permits_path)
-              href=permits_path
-              ] = t 'permits.index.label'
-            a[class=link_status(targets_path)
-              href= targets_path
-              ] = t 'targets.index.label'
-            a[class=link_status(partners_path)
-              href= partners_path
-              ] = t 'partners.index.label'
-            a[class=link_status(contact_path)
-              href= contact_path
-              ] = t 'contact.show.label'
-        // yandex.search.form
+  .pro-footer__navigation.container
+    .row
+      .info.col-xs-12.col-md-4
+        h3 Информация
+        nav.nav.flex-column
+          a[class=link_status(about_path)
+            href=about_path
+            ] = t 'statics.about.label'
+          a[class=link_status(permits_path)
+            href=permits_path
+            ] = t 'permits.index.label'
+          a[class=link_status(targets_path)
+            href= targets_path
+            ] = t 'targets.index.label'
+          a[class=link_status(partners_path)
+            href= partners_path
+            ] = t 'partners.index.label'
+          a[class=link_status(contact_path)
+            href= contact_path
+            ] = t 'contact.show.label'
+      // yandex.search.form
 
-        .activities.col-xs-12.col-md-4
-          h3 Услуги
-          nav.nav.flex-column
-            - for item in Activity.roots.navigated
-              a[class=link_status_activity(item)
-                href=activity_path(item)]
-                = item.name
+      .activities.col-xs-12.col-md-4
+        h3 Услуги
+        nav.nav.flex-column
+          - for item in Activity.roots.navigated
+            a[class=link_status_activity(item)
+              href=activity_path(item)]
+              = item.name
 
-        .business.col-xs-12.col-md-4[
-          itemscope
-          itemtype='http://schema.org/LocalBusiness'
-          ]
-            h3%name
-              a%url[
-                class=link_status(root_path)
-                href=root_path
-                ] = t 'application.name'
-            .contact.nav.flex-column
-              a%address[
-                href='//goo.gl/PUAWWN'
-                target='_blank'
-                rel='nofollow'
-                itemscope
-                itemtype='http://schema.org/PostalAddress'
-                ]
-                span%postalCode 127006
-                ',
-                span itemprop='addressRegion addressLocality' Москва
-                ',
-                span%streetAddress ул.&nbsp;Малая Дмитровка, д.&nbsp;18а, стр.&nbsp;3
-              a%email href='mailto:mail@gkcck.ru'
-                ^icon-envelope-o>
-                | mail@gkcck.ru
-              a%telephone href='tel://+74953634582'
-                ^icon-phone>
-                | +7 (495) 363-45-82
-            div
-              ^icon-clock-o>
-              | c&nbsp;9<sup>00</sup> до&nbsp;19<sup>00</sup>
-              meta%openingHours content='Mo-Fr 9:00−19:00'
-              span%geo(
-                itemscope
-                itemtype='http://schema.org/GeoCoordinates'
-                )
-                meta%latitude content='55.771174'
-                meta%longitude content='37.605890'
-            = render 'shared/social'
+      .business.col-xs-12.col-md-4[
+        itemscope
+        itemtype='http://schema.org/LocalBusiness'
+        ]
+          h3%name
+            a%url[
+              class=link_status(root_path)
+              href=root_path
+              ] = t 'application.name'
+          .contact.nav.flex-column
+            a%address[
+              href='//goo.gl/PUAWWN'
+              target='_blank'
+              rel='nofollow'
+              itemscope
+              itemtype='http://schema.org/PostalAddress'
+              ]
+              span%postalCode 127006
+              ',
+              span itemprop='addressRegion addressLocality' Москва
+              ',
+              span%streetAddress ул.&nbsp;Малая Дмитровка, д.&nbsp;18а, стр.&nbsp;3
+            a%email href='mailto:mail@gkcck.ru'
+              ^icon-envelope-o>
+              | mail@gkcck.ru
+            a%telephone href='tel://+74953634582'
+              ^icon-phone>
+              | +7 (495) 363-45-82
+          div
+            ^icon-clock-o>
+            | c&nbsp;9<sup>00</sup> до&nbsp;19<sup>00</sup>
+            meta%openingHours content='Mo-Fr 9:00−19:00'
+            span%geo(
+              itemscope
+              itemtype='http://schema.org/GeoCoordinates'
+              )
+              meta%latitude content='55.771174'
+              meta%longitude content='37.605890'
+          = render 'shared/social'
 
-    .copyright.container-fluid
-      .row
-        .col-sm-3
-          ^icon-html5.h-onclick[data-w3c]
-          - if YANDEX[:metrika]
-            ^icon-yandex-metrika.h-onclick data-ymet=YANDEX[:metrika]
-          a.develop(rel='nofollow'
-            href='//rubyonrails.org'
-            target='_blank') Ruby On Rails
+  .pro-footer__copyright.container-fluid
+    .row
+      .col-sm-3
+        ^icon-html5.h-onclick[data-w3c]
+        - if YANDEX[:metrika]
+          ^icon-yandex-metrika.h-onclick data-ymet=YANDEX[:metrika]
+        a.develop(rel='nofollow'
+          href='//rubyonrails.org'
+          target='_blank') Ruby On Rails
 
-        .col-sm-6.text-sm-center
-          a(class=link_status(privacy_path)
-            href=privacy_path) = t 'statics.privacy.label'
+      .col-sm-6.text-sm-center
+        a(class=link_status(privacy_path)
+          href=privacy_path) = t 'statics.privacy.label'
 
-        .col-sm-3.text-sm-right
-          a%author.develop>(
-          href= '//daks.pro?rel=author'
-          target='_blank'
-          ) DAkS
-          ' &copy;
-          span%copyrightYear = DateTime.now.year
+      .col-sm-3.text-sm-right
+        a%author.develop>(
+        href= '//daks.pro?rel=author'
+        target=' _blank '
+        ) DAkS
+        ' &copy;
+        span%copyrightYear = DateTime.now.year

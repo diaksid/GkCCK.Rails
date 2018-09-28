@@ -1,21 +1,33 @@
+@mixin icon-before() {
+  &::before {
+    display: block;
+    vertical-align: inherit;
+    font-family: "#{$icon-font-family}" !important;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+  }
+}
+
 @mixin icon() {
   position: relative;
+  display: inline-block;
   vertical-align: bottom;
-  font-family: "#{$icon-font-family}" !important;
   font-size: inherit;
   line-height: inherit;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
   text-transform: none;
-  text-rendering: auto;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  &::before {
-    display: inline-block;
-    vertical-align: inherit;
-  }
+  @include icon-before();
 }
 
 @mixin icon-pseudo() {
@@ -24,19 +36,13 @@
   align-items: center;
   line-height: 100%;
 
+  @include icon-before();
+
   &::before {
-    display: inline-block;
     position: relative;
-    vertical-align: inherit;
     margin-right: 0.5em;
-    font-family: "#{$icon-font-family}" !important;
-    font-size: inherit;
-    line-height: inherit;
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    text-rendering: auto;
+    font-feature-settings: 'liga';
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -44,14 +50,10 @@
 
 @mixin icon-rotate($degrees, $rotation) {
   filter: progid:dximagetransform.microsoft.basicimage(rotation=#{$rotation});
-  -webkit-transform: rotate($degrees);
-  -ms-transform: rotate($degrees);
   transform: rotate($degrees);
 }
 
 @mixin icon-flip($horiz, $vert, $rotation) {
   filter: progid:dximagetransform.microsoft.basicimage(rotation=#{$rotation});
-  -webkit-transform: scale($horiz, $vert);
-  -ms-transform: scale($horiz, $vert);
   transform: scale($horiz, $vert);
 }

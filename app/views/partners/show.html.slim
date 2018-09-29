@@ -6,7 +6,7 @@
 
 
   .pro-content.container
-    section.clearfix(
+    .clearfix(
       itemscope
       itemprop='organization'
       itemtype='http://schema.org/Organization'
@@ -37,10 +37,10 @@
       /- unless @model.geo.empty?
 
     - unless @model.content.blank?
-      section.h-text--readable == @model.content.squish
+      .mt-3.h-text--readable == @model.content.squish
 
     - unless @model.targets.empty? && @model.permits.empty?
-      section(
+      .mt-3(
         itemscope
         itemtype='http://schema.org/DataCatalog'
         )

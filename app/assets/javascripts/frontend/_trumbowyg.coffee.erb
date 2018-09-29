@@ -1,7 +1,10 @@
 (($, ProJ) ->
+  ProJ.fn ?= {}
+
   fn = (els, options) -> els.each -> $(@).trumbowyg $.extend {}, options, $(@).data 'redactor'
 
-  ProJ.redactor = ->
+
+  ProJ.fn.redactor = ->
     options =
       svgPath: '<%= asset_path('trumbowyg/dist/ui/icons.svg') %>'
       lang: 'ru'
@@ -13,6 +16,7 @@
         ['fullscreen']
       ]
       autogrow: true
+
     if (els = $ '[data-redactor]').length
       if $.trumbowyg?
         fn els, options

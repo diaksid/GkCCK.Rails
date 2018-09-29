@@ -1,4 +1,6 @@
 (($, ProJ) ->
+  ProJ.fn ?= {}
+
 
   class Carousel
 
@@ -51,7 +53,7 @@
           $(@).removeClass 'active'
 
 
-  ProJ.carousel = ->
+  ProJ.fn.carousel = ->
     options =
       wrap: 'circular'
       center: no

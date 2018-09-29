@@ -1,6 +1,4 @@
 ((window, document, $, ProJ) ->
-  'use strict'
-
   ProJ.fn ?= {}
 
 
@@ -8,11 +6,14 @@
     ProJ('[data-click]').each -> @.on 'click', @dataset.click
     ProJ
       .lazyload()
-      .carousel()
       .ymaps()
-      .fn.bgswitcher()
+    ProJ.fn
+      .bgswitcher()
+      .carousel()
+      .redactor()
     # ProJ('.pro-header--home').canvasSnow()
     ProJ('.pro-header--grid').canvasGrid()
+    $('[data-tooltip]').tooltip placement: (n, e) -> e.dataset.tooltip or 'auto'
     $('.pro-navbar').addClass 'h-gradient--top'
     @
 
@@ -22,16 +23,13 @@
     ProJ('a.is-active, .is-active > a, a.active, .active > a').deactive()
     ProJ('[data-ymet]').ymet()
     ProJ('[data-w3c]').w3c()
-    ProJ.fn.submit()
     ProJ
       .base64()
       .mailto()
       .scroll()
       .lightbox()
-      .redactor()
-    $('[data-tooltip]').tooltip placement: (n, e) -> e.dataset.tooltip or 'auto'
-    $ window
-      .scroll ProJ.fn.scroll
+    ProJ.fn.submit()
+    $(window).scroll ProJ.fn.scroll
     @
 
 ) window, document, jQuery, ProJ

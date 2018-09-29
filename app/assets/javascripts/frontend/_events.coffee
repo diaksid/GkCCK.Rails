@@ -6,11 +6,11 @@
     ProJ('[data-click]').each -> @.on 'click', @dataset.click
     ProJ
       .lazyload()
+      .lightbox()
       .ymaps()
     ProJ.fn
       .bgswitcher()
       .carousel()
-      .redactor()
     # ProJ('.pro-header--home').canvasSnow()
     ProJ('.pro-header--grid').canvasGrid()
     $('[data-tooltip]').tooltip placement: (n, e) -> e.dataset.tooltip or 'auto'
@@ -27,8 +27,10 @@
       .base64()
       .mailto()
       .scroll()
-      .lightbox()
-    ProJ.fn.submit()
+    ProJ.fn
+      .submit()
+      .redactor()
+
     $(window).scroll ProJ.fn.scroll
     @
 

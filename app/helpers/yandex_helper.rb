@@ -1,6 +1,5 @@
 module YandexHelper
 
-  # Yandex Metrika script
   def yandex_metrika_script_tag
     if YANDEX[:metrika]
       content_tag :script do
@@ -32,7 +31,6 @@ module YandexHelper
   end
 
 
-  # Yandex Search script
   def yandex_search_script_tag
     if YANDEX[:search]
       content_tag :script do

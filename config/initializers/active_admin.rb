@@ -8,7 +8,6 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  # config.site_title = 'GkCCK'
   config.site_title = proc {I18n.t 'application.label'}
 
   # Set the link url for the title. For example, to take

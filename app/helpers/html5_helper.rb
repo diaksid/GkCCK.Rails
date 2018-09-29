@@ -10,7 +10,6 @@ module Html5Helper
   end
 
 
-  # HTML5 tag format
   def tag(name, options = nil, open = false, escape = true)
     if Slim::Engine.options[:format] == :html
       open = true
@@ -19,7 +18,6 @@ module Html5Helper
   end
 
 
-  # Remove linebreak
   def csrf_meta_tags
     if protect_against_forgery?
       [

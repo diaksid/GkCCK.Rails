@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  protect_from_forgery only: [:deliver]
+  # protect_from_forgery only: [:deliver]
 
   def show
     @schema = {page: 'ContactPage'}

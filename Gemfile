@@ -16,6 +16,8 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+# gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'duktape'
 # Use CoffeeScript for .coffee assets and views
@@ -49,6 +51,8 @@ group :development do
 end
 
 group :test do
+  # Use sqlite3 as the database for Active Record
+  # gem 'sqlite3'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   before_action :set_host_for_local_storage, :template_vars
 
   private

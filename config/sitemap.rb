@@ -3,7 +3,7 @@ SitemapGenerator::Sitemap.default_host = "https://gkcck.ru"
 SitemapGenerator::Sitemap.compress = false # :all_but_first
 
 SitemapGenerator::Sitemap.create do
-  add about_path, priority: 0.3
+  add about_path
   add privacy_path, priority: 0.3
   add contact_path, priority: 0.3
 

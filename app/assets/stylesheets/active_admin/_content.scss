@@ -2,6 +2,7 @@
   padding: $thumbnail-padding;
   background-color: $thumbnail-bg;
   border: $thumbnail-border-width solid $thumbnail-border-color;
+
   @include border-radius($thumbnail-border-radius);
   @include box-shadow($thumbnail-box-shadow);
   @include img-fluid;
@@ -21,29 +22,36 @@
   border-radius: $custom-select-border-radius;
   -moz-appearance: none;
   -webkit-appearance: none;
+
   &--full {
     overflow: visible !important;
+
     &-null {
       padding-bottom: $custom-select-padding-y * 3;
     }
   }
+
   &:focus {
     border-color: $custom-select-focus-border-color;
     outline: none;
     box-shadow: $custom-select-focus-box-shadow;
+
     &::-ms-value {
       color: $input-color;
       background-color: $input-bg;
     }
   }
+
   &:disabled {
     color: $custom-select-disabled-color;
     cursor: pointer;
     background-color: $custom-select-disabled-bg;
   }
+
   &::-ms-expand {
     opacity: 0;
   }
+
   option {
     padding: 4px 0 2px;
   }

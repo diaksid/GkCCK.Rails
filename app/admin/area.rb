@@ -12,7 +12,6 @@ ActiveAdmin.register Area do
   filter :name
   filter :created_at
 
-
   sortable tree: false,
            sorting_attribute: :index
   # config.paginate = true

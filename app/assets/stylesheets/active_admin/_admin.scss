@@ -2,6 +2,7 @@ form {
   &.formtastic {
     margin-top: 11.5px;
   }
+
   input[type="datetime-local"] {
     padding: 4px 10px 5px;
     outline: none;
@@ -9,6 +10,7 @@ form {
     border: 1px solid #c9d0d6;
     border-radius: 3px;
   }
+
   input[type=date] {
     display: inline-block;
     padding: 4px 10px 5px;
@@ -16,6 +18,7 @@ form {
     font-family: monospace;
     font-size: 13px;
   }
+
   input[readonly] {
     //padding-left: 0;
     //font-size: 13px;
@@ -23,10 +26,12 @@ form {
     //border: none;
     //box-shadow: none;
   }
+
   fieldset > ol > li.boolean label {
     font-weight: bold;
+
     input {
-      margin: 0 .2em 0 0;
+      margin: 0 0.2em 0 0;
     }
   }
 }
@@ -37,47 +42,84 @@ form {
   }
 }
 
-.has-attachment.has_many_fields {
-  min-height: 10rem;
-  padding-left: 12rem;
-  ol {
-    padding-top: .25rem;
-  }
-  .handle {
-    display: none;
-    top: 1rem;
-    left: 1rem;
-    right: auto;
-    width: 96px;
-    height: 96px;
-    cursor: default;
-    img {
-      position: relative;
-      z-index: 1;
-      background-color: $gray-200;
+#main_content {
+  th {
+    &.col-updated_at,
+    &.col-created_at {
+      width: 7rem;
     }
-    small {
-      display: block;
-      margin-top: ($spacer / 2);
-      color: $gray-500;
-      font-size: 90%;
-      text-shadow: 0 0 1px $white;
-      em {
-        margin-left: 1rem;
-        color: $info;
-        font-style: normal;
+
+    &.h-size--actions-short {
+      width: 4rem;
+    }
+
+    &.col-selectable {
+      width: 1rem;
+    }
+
+    &.col-id {
+      width: 2.5rem;
+      text-transform: uppercase;
+    }
+
+    &.col-actions {
+      width: 9.5rem;
+
+      &--short {
+        width: 4rem;
       }
     }
-    &.ui-sortable-handle {
-      cursor: move;
-      img {
-        box-shadow: rgba(0, 0, 0, 0.5) 0 0 10px;
-        &:hover,
-        &:focus {
-          box-shadow: rgba(0, 0, 0, 0.7) 0 2px 12px;
-          + small {
-            color: $black;
-          }
+  }
+
+  td {
+    .img-thumbnail {
+      width: 96px;
+      height: 96px;
+    }
+
+    a {
+      &:hover {
+        .img-thumbnail {
+          border-color: $link-hover-color;
+        }
+      }
+    }
+  }
+
+  #collection_selection_toggle_explaination {
+    vertical-align: top;
+    color: #333;
+    font-size: 11px;
+    font-style: normal;
+  }
+
+  .index_as_sortable {
+    h3.cell {
+      font-size: 14px;
+      line-height: 1;
+
+      small {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        color: #aaa;
+        text-transform: lowercase;
+
+        i,
+        em {
+          margin-left: 1rem;
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        em {
+          color: $danger;
+        }
+
+        span {
+          display: block;
+          margin-top: 4px;
+          color: $info;
         }
       }
     }
@@ -92,80 +134,10 @@ form {
   }
 }
 
-#main_content {
-  th {
-    &.col-updated_at,
-    &.col-created_at {
-      width: 7rem;
-    }
-    &.h-size--actions-short {
-      width: 4rem;
-    }
-    &.col-selectable {
-      width: 1rem;
-    }
-    &.col-id {
-      width: 2.5rem;
-      text-transform: uppercase;
-    }
-    &.col-actions {
-      width: 9.5rem;
-      &--short {
-        width: 4rem;
-      }
-    }
-  }
-  td {
-    a {
-      &:hover {
-        .img-thumbnail {
-          border-color: $link-hover-color;
-        }
-      }
-    }
-    .img-thumbnail {
-      width: 96px;
-      height: 96px;
-    }
-  }
-  #collection_selection_toggle_explaination {
-    vertical-align: top;
-    color: #333;
-    font-size: 11px;
-    font-style: normal;
-  }
-  .index_as_sortable {
-    h3.cell {
-      font-size: 14px;
-      line-height: 1;
-      small {
-        display: block;
-        margin-top: 4px;
-        font-size: 12px;
-        color: #aaa;
-        text-transform: lowercase;
-        i,
-        em {
-          margin-left: 1rem;
-          font-weight: normal;
-          font-style: normal;
-        }
-        em {
-          color: $danger;
-        }
-        span {
-          display: block;
-          margin-top: 4px;
-          color: $info;
-        }
-      }
-    }
-  }
-}
-
 #titlebar_left {
   overflow: hidden;
 }
+
 #page_title {
   display: inline;
 }

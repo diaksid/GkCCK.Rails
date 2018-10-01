@@ -1,35 +1,32 @@
 $sidebar-width: 320px;
-
+//
 @import "active_admin/mixins";
 @import "active_admin/base";
-
+//
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
-
+//
 @import "helpers";
 @import "content";
 @import "admin";
-
+@import "attachment";
 @import "trumbowyg";
-
 
 html {
   overflow-y: scroll;
 }
 
 .status_tag {
-  background: #6090DB;
+  background: #6090db;
 }
 
 #utils {
   padding-left: 1rem;
   line-height: 100%;
+
   > a {
     font-size: 125%;
     line-height: inherit;
   }
-}
-
-#main_content {
 }

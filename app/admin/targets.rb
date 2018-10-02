@@ -20,6 +20,7 @@ ActiveAdmin.register Target do
   scope :individual
   scope :unscoped
 
+  filter :name
   filter :published
   filter :navigated
   filter :importance, as: :select, collection: Target::IMPORTANTS.to_a,
@@ -32,7 +33,6 @@ ActiveAdmin.register Target do
          include_blank: true,
          unless: proc {Partner.all.empty?}
   filter :created_at
-
 
   sortable tree: false,
            sorting_attribute: :index
@@ -115,13 +115,16 @@ ActiveAdmin.register Target do
                   input_html: {class: 'control-select'}
           f.input :navigated, as: :select, include_blank: false,
                   input_html: {class: 'control-select'}
-          # f.input :index, as: :number, input_html: {class: 'h-width--10', min: 0}
+          # f.input :index, as: :number,
+          #         input_html: {class: 'h-width--int',
+          #                      min: 0}
           f.input :importance, as: :select, include_blank: false,
                   collection: Target::IMPORTANTS.to_a,
                   input_html: {class: 'control-select'}
         end
         f.inputs do
-          f.input :name
+          f.input :name,
+                  input_html: {class: 'h-width--40'}
           f.input :header
           f.input :content, as: :redactor
         end
@@ -200,7 +203,7 @@ ActiveAdmin.register Target do
         item.update_column :index, idx
       end
     end
-    Target.where(partner: nil).order(:index).each.with_index do |item, idx|
+    Target.individual.order(:index).each.with_index do |item, idx|
       item.update_column :index, idx
     end
     redirect_back fallback_location: admin_targets_path,
@@ -220,14 +223,22 @@ ActiveAdmin.register Target do
           end
         end
       end
-      begin
-        super
-      rescue
-      else
-        if params[:target][:images_purge] == '1'
-          Target.find(params[:id]).images.purge
-        elsif !purge.empty?
-          ActiveStorage::Attachment.find(purge).each(&:purge)
+      images = params[:target].include?(:images) ? params[:target].delete('images') : false
+      super do |format|
+        if resource.valid?
+          if params[:target][:images_purge] == '1'
+            resource.images.purge
+          elsif !purge.empty?
+            ActiveStorage::Attachment.find(purge).each(&:purge)
+          end
+          if images
+            resource.images.attach images
+          end
+          if !resource.images.empty? && (!purge.empty? || images)
+            resource.images.order(:index).each.with_index do |item, idx|
+              item.update_column :index, idx
+            end
+          end
         end
       end
     end

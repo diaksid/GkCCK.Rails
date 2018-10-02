@@ -1,3 +1,4 @@
+require 'active_admin/views/index_as_table_alter'
 require 'active_admin/views/components/attributes_table'
 require 'active_admin/views/components/table_for'
 require 'active_admin/inputs/redactor_input'

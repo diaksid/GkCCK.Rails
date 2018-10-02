@@ -54,9 +54,9 @@ ActiveAdmin.register Area do
     f.inputs do
       f.input :active, as: :select, include_blank: false,
               input_html: {class: 'control-select'}
-      f.input :index, as: :number,
-              input_html: {class: 'h-width--int',
-                           min: 0}
+      # f.input :index, as: :number,
+      #         input_html: {class: 'h-width--int',
+      #                      min: 0}
       f.input :name,
               input_html: {class: 'h-width--40'}
     end

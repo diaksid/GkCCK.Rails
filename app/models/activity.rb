@@ -9,6 +9,7 @@ class Activity < ApplicationRecord
   acts_as_list column: :index,
                top_of_list: 0
 
+
   validates_presence_of :name
   validates_uniqueness_of :name,
                           case_sensitive: false
@@ -43,7 +44,9 @@ class Activity < ApplicationRecord
     arr
   end
 
+
   private
+
 
   def check_attributes
     self.navigated = false unless published

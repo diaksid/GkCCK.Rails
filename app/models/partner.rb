@@ -12,7 +12,8 @@ class Partner < ApplicationRecord
   accepts_nested_attributes_for :feedbacks,
                                 allow_destroy: true
 
-  belongs_to :user, optional: true
+  belongs_to :user,
+             optional: true
 
   acts_as_list column: :index,
                top_of_list: 0

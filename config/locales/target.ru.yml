@@ -17,7 +17,7 @@ ru:
     attributes:
       target:
         published: "Опубликовано"
-        navigated: "Навигация"
+        navigated: "В навигации"
         importance: "Значимость"
         start_at: "Начало"
         finish_at: "Окончание"

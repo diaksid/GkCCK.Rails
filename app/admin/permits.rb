@@ -1,4 +1,6 @@
 ActiveAdmin.register Permit do
+  include AdminWebPage
+
   menu priority: 5
 
   permit_params :published, :navigated,
@@ -25,7 +27,6 @@ ActiveAdmin.register Permit do
   filter :number
   filter :provider
   filter :created_at
-
 
   sortable tree: false,
            sorting_attribute: :index

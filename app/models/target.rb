@@ -9,15 +9,15 @@ class Target < ApplicationRecord
                scope: :partner
 
 
-  validates_presence_of :name
-  validates_uniqueness_of :name,
-                          case_sensitive: false
-
   IMPORTANTS = {
     'Типовой': 0,
     'Важный': 1,
     'Важнейший': 2
   }
+
+  validates_presence_of :name
+  validates_uniqueness_of :name,
+                          case_sensitive: false
 
 
   default_scope {order(importance: :desc, start_at: :desc, name: :asc)}

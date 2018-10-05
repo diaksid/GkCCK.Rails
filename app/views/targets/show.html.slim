@@ -34,11 +34,13 @@
           figure.c-yandex-map.card.h-preload.mb-3 *data aria-hidden='true'
 
     - unless @model.images.empty?
+      ruby:
+        size = {width: 192, height: 144} if @model.image.metadata[:width] > @model.image.metadata[:height]
+        size = {width: 144, height: 192} if @model.image.metadata[:width] < @model.image.metadata[:height]
       .albom = render partial: 'attachments/canvas', collection: @model.images,
-              layout: 'attachments/banner',
-              locals: {class: ['banner__frame', 'h-shadowed'],
-                       lightbox: "#{action_name}-lightbox",
-                       links: true,
-                       wrapper: {class: ['h-preload']}}
-
+                      layout: 'attachments/banner',
+                      locals: {class: ['banner__frame', 'h-shadowed'],
+                               lightbox: "#{action_name}-lightbox",
+                               links: true,
+                               wrapper: {class: ['h-preload']}}.merge!(size)
       link%thumbnailUrl href=url_for(@model.image.variant resize_to_fill 96)

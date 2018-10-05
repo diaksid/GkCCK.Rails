@@ -36,10 +36,7 @@ ActiveAdmin.register Permit do
     selectable_column
     id_column
     column :index, class: 'h-width--int'
-    column :image, class: 'h-width--icon', sortable: false do |model|
-      render partial: 'admin/image', object: model.image, locals: {href: edit_admin_permit_path(model),
-                                                                   fit: true}
-    end
+    column_aimg :image, class: 'h-width--icon',fit: true
     column :active?, class: 'h-width--bool'
     column :published, class: 'h-width--bool'
     column :navigated, class: 'h-width--bool'
@@ -76,7 +73,8 @@ ActiveAdmin.register Permit do
       row :partner
     end
     panel I18n.t('active_admin.panels.images', count: resource.images.count) do
-      render partial: 'admin/show/images', locals: {fit: true}
+      render partial: 'admin/show/images',
+             locals: {fit: true}
     end unless resource.images.empty?
     panel I18n.t('active_admin.panels.seo') do
       render partial: 'admin/show/seo'
@@ -111,7 +109,9 @@ ActiveAdmin.register Permit do
         end
       end
       tab I18n.t('active_admin.panels.images', count: f.object.images.count) do
-        render partial: 'admin/form/images', locals: {form: f, fit: true}
+        render partial: 'admin/form/images',
+               locals: {form: f,
+                        fit: true}
       end unless f.object.new_record?
       tab I18n.t('active_admin.panels.seo') do
         render partial: 'admin/form/seo', locals: {form: f}
@@ -135,8 +135,9 @@ ActiveAdmin.register Permit do
 
   sidebar I18n.t('activerecord.attributes.permit.image'),
           priority: 1, only: [:show, :edit, :update] do
-    render partial: 'admin/image', object: resource.image, locals: {size: 192,
-                                                                    fit: true}
+    render partial: 'admin/image', object: resource.image,
+           locals: {size: 192,
+                    fit: true}
   end
 
 
@@ -151,14 +152,22 @@ ActiveAdmin.register Permit do
           end
         end
       end
-      begin
-        super
-      rescue
-      else
-        if params[:permit][:images_purge] == '1'
-          Target.find(params[:id]).images.purge
-        elsif !purge.empty?
-          ActiveStorage::Attachment.find(purge).each(&:purge)
+      images = params[:permit].include?(:images) ? params[:permit].delete('images') : false
+      super do |format|
+        if resource.valid?
+          if params[:permit][:images_purge] == '1'
+            resource.images.purge
+          elsif !purge.empty?
+            ActiveStorage::Attachment.find(purge).each(&:purge)
+          end
+          if images
+            resource.images.attach images
+          end
+          if !resource.images.empty? && (!purge.empty? || images)
+            resource.images.order(:index).each.with_index do |item, idx|
+              item.update_column :index, idx
+            end
+          end
         end
       end
     end

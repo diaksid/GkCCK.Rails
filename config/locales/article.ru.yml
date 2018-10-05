@@ -18,7 +18,7 @@ ru:
       article:
         published: "Опубликовано"
         published_at: "Дата публикации"
-        navigated: "Навигация"
+        navigated: "В навигации"
         header: "Заголовок"
         annotation: "Аннотация"
         content: "Содержимое"

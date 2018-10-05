@@ -17,7 +17,7 @@ ru:
     attributes:
       activity:
         published: "Опубликовано"
-        navigated: "Навигация"
+        navigated: "В навигации"
         name: "Название"
         header: "Заголовок"
         annotation: "Аннотация"

@@ -27,6 +27,12 @@ module ActiveAdmin
                           fit: fit}
         end
       end
+
+      def column_kbyte(attribute, *args)
+        column(attribute, *args) do |model|
+          '%.1f Kb' % (model[attribute].to_f / 1024)
+        end
+      end
     end
 
   end

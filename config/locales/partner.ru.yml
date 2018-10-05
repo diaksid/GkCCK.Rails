@@ -17,7 +17,7 @@ ru:
     attributes:
       partner:
         published: "Опубликовано"
-        navigated: "Навигация"
+        navigated: "В навигации"
         active: "Активно"
         affiliate: "Филиал"
         name: "Название"

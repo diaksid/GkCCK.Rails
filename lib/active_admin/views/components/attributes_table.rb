@@ -27,6 +27,12 @@ module ActiveAdmin
                           fit: fit}
         end
       end
+
+      def row_kbyte(attribute, *args)
+        row(attribute, *args) do |model|
+          '%.1f Kb' % (model[attribute].to_f / 1024)
+        end
+      end
     end
 
   end

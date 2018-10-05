@@ -7,10 +7,13 @@ class AttachedIconInput
   def to_html
     size = options.delete(:size) || 96
     variant = options.delete(:fit) ? resize_to_fit(size) : resize_to_fill(size)
-    image = object.send(method).nil? ?
-              url_for('system/image.svg')
-              :
+    if (attached = !object.send(method).nil?)
+      attached = object.send(method).attached? if object.send(method).methods.include? :attached?
+    end
+    image = attached ?
               object.send(method).variant(variant).processed.service_url
+              :
+              url_for('system/image.svg')
     attrs = {class: 'img--thumbnail',
              width: 96,
              height: 96}

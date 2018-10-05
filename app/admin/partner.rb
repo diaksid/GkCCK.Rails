@@ -32,11 +32,9 @@ ActiveAdmin.register Partner do
   filter :name
   filter :created_at
 
-
   sortable tree: false,
            sorting_attribute: :index
   # config.paginate = true
-
 
   index default: true do
     selectable_column
@@ -195,18 +193,9 @@ ActiveAdmin.register Partner do
   end
 
 
-  sidebar I18n.t('active_admin.sidebars.state'),
-          priority: 0, only: :show do
-    attributes_table_for resource do
-      row :published
-      row :navigated
-      row :active
-      row :affiliate
-      row :index
-      row :id
-      row :updated_at
-      row :created_at
-    end
+  sidebar I18n.t('activerecord.attributes.partner.image'),
+          priority: 0, only: [:show, :edit, :update] do
+    render partial: 'admin/image', object: resource.image, locals: {size: 192}
   end
 
   sidebar I18n.t('active_admin.sidebars.relations'),
@@ -224,19 +213,33 @@ ActiveAdmin.register Partner do
     end
   end
 
-  sidebar I18n.t('activerecord.attributes.partner.image'),
-          priority: 2, only: [:show, :edit, :update] do
-    render partial: 'admin/image', object: resource.image, locals: {size: 192}
+  sidebar I18n.t('active_admin.sidebars.state'),
+          priority: 2, only: :show do
+    attributes_table_for resource do
+      row :published
+      row :navigated
+      row :active
+      row :affiliate
+      row :index
+      row :id
+      row :updated_at
+      row :created_at
+    end
   end
 
 
   controller do
     def update
-      begin
-        super
-      rescue
-      else
-        Partner.find(params[:id]).image.purge if params[:partner][:image_purge] == '1'
+      image = params[:partner].include?(:image) ? params[:partner].delete('image') : false
+      super do |format|
+        if resource.valid?
+          if params[:partner][:image_purge] == '1'
+            resource.image.purge
+          end
+          if image
+            resource.image.attach image
+          end
+        end
       end
     end
   end

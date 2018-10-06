@@ -10,4 +10,4 @@
       })
     }
   }, true)
-}).call(this, PRO)
+})(PRO)

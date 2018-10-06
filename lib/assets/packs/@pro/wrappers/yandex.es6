@@ -83,4 +83,4 @@
     this.Ymaps.load(selector)
     return this
   }
-}).call(this, window, document, PRO)
+})(window, document, PRO)

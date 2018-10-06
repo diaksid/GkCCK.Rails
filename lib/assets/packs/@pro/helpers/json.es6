@@ -1,15 +1,17 @@
 (function (PRO) {
   const Pro = PRO()
 
-  Pro.assign({
-    fromJSON (data) {
+  class PROjson {
+    static to (data) {
+      return JSON.stringify(data)
+    }
+
+    static from (data) {
       if (typeof data === 'string' && data.match(/\[(.+)]/)) {
         return JSON.parse(data)
       }
-    },
-
-    toJSON (data) {
-      return JSON.stringify(data)
     }
-  })
-}).call(this, PRO)
+  }
+
+  Pro.json = PROjson
+})(PRO)

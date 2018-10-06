@@ -34,4 +34,4 @@
       )(id)
     }
   }
-}).call(this, window, PRO)
+})(window, PRO)

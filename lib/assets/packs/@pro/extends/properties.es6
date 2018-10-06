@@ -1,12 +1,10 @@
-(function (window, document, PRO) {
+(function (window, PRO) {
   const Pro = PRO()
 
   function getRect (el) {
-    if (typeof el.getBoundingClientRect === 'function') {
-      return el.getBoundingClientRect()
-    } else {
-      return { top: 0, left: 0, bottom: 0, right: 0 }
-    }
+    return typeof el.getBoundingClientRect === 'function'
+      ? el.getBoundingClientRect()
+      : { top: 0, left: 0, bottom: 0, right: 0 }
   }
 
   function isWindow (el) {
@@ -17,49 +15,46 @@
     return isWindow(el) ? el : el.defaultView
   }
 
-  Pro.assign({
-    innerHeight (el) {
-      return isWindow(el) ? el.innerHeight : el.clientHeight
-    },
+  const PROinnerHeight = function (el) {
+    return isWindow(el) ? el.innerHeight : el.clientHeight
+  }
 
-    innerWidth (el) {
-      return isWindow(el) ? el.innerWidth : el.clientWidth
-    },
+  const PROinnerWidth = function (el) {
+    return isWindow(el) ? el.innerWidth : el.clientWidth
+  }
 
-    outerHeight (el, includeMargin = true) {
-      let height = this.innerHeight(el)
-      if (includeMargin && !isWindow(el)) {
-        const computedStyle = window.getComputedStyle(el)
-        height += parseInt(computedStyle.marginTop, 10)
-        height += parseInt(computedStyle.marginBottom, 10)
-      }
-      return height
-    },
+  const PROouterHeight = function (el, includeMargin = true) {
+    let height = PROinnerHeight(el)
+    if (includeMargin && !isWindow(el)) {
+      const computedStyle = window.getComputedStyle(el)
+      height += parseInt(computedStyle.marginTop, 10)
+      height += parseInt(computedStyle.marginBottom, 10)
+    }
+    return height
+  }
 
-    outerWidth (el, includeMargin = true) {
-      let width = this.innerWidth(el)
-      if (includeMargin && !isWindow(el)) {
-        const computedStyle = window.getComputedStyle(el)
-        width += parseInt(computedStyle.marginLeft, 10)
-        width += parseInt(computedStyle.marginRight, 10)
-      }
-      return width
-    },
+  const PROouterWidth = function (el, includeMargin = true) {
+    let width = PROinnerWidth(el)
+    if (includeMargin && !isWindow(el)) {
+      const computedStyle = window.getComputedStyle(el)
+      width += parseInt(computedStyle.marginLeft, 10)
+      width += parseInt(computedStyle.marginRight, 10)
+    }
+    return width
+  }
 
-    scrollTop (el) {
-      const win = getWindow(el)
-      return win ? win.pageYOffset : el.scrollTop
-    },
+  const PROscrollTop = function (el) {
+    const win = getWindow(el)
+    return win ? win.pageYOffset : el.scrollTop
+  }
 
-    scrollLeft (el) {
-      const win = getWindow(el)
-      return win ? win.pageXOffset : el.scrollLeft
-    },
+  const PROscrollLeft = function (el) {
+    const win = getWindow(el)
+    return win ? win.pageXOffset : el.scrollLeft
+  }
 
-    offset (el) {
-      if (!el.ownerDocument) {
-        return null
-      }
+  const PROoffset = function (el) {
+    if (el.ownerDocument) {
       const win = getWindow(el.ownerDocument)
       const html = el.ownerDocument.documentElement
       const rect = getRect(el)
@@ -67,12 +62,11 @@
         top: rect.top + win.pageYOffset - html.clientTop,
         left: rect.left + win.pageXOffset - html.clientLeft
       }
-    },
+    }
+  }
 
-    view (el, full = false) {
-      if (!el.ownerDocument) {
-        return null
-      }
+  const PROview = function (el, full = false) {
+    if (el.ownerDocument) {
       const win = getWindow(el.ownerDocument)
       const html = el.ownerDocument.documentElement
       const rect = getRect(el)
@@ -80,22 +74,30 @@
         bottom: win.innerHeight || html.clientHeight,
         right: win.innerWidth || html.clientWidth
       }
-      if (full) {
-        return (
+      return full
+        ? (
           rect.top >= 0 &&
           rect.left >= 0 &&
           rect.bottom <= port.bottom &&
           rect.right <= port.right
-        )
-      } else {
-        return (
+        ) : (
           rect.top <= port.bottom &&
           rect.left <= port.right &&
           rect.bottom >= 0 &&
           rect.right >= 0
         )
-      }
     }
+  }
+
+  Pro.assign({
+    innerHeight: PROinnerHeight,
+    innerWidth: PROinnerWidth,
+    outerHeight: PROouterHeight,
+    outerWidth: PROouterWidth,
+    scrollTop: PROscrollTop,
+    scrollLeft: PROscrollLeft,
+    offset: PROoffset,
+    view: PROview
   })
 
   for (let method of [
@@ -112,4 +114,4 @@
       return this.length && Pro[method](this.first, param)
     }
   }
-}).call(this, window, document, PRO);
+})(window, PRO);

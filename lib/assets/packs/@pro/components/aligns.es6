@@ -1,12 +1,13 @@
 (function (PRO) {
   const Pro = PRO()
+  const PROinnerHeight = Pro.innerHeight
 
-  Pro.aligns = function (selector) {
+  const PROaligns = function (selector, context) {
     let val = 0
-    Pro.to(selector)
+    return new Pro(selector, context)
       .each(function () {
         this.style.height = ''
-        const height = PRO(this).innerHeight()
+        const height = PROinnerHeight(this)
         if (height > val) {
           val = height
         }
@@ -14,17 +15,21 @@
       .each(function () {
         this.style.height = `${val}px`
       })
+  }
+
+  Pro.aligns = function () {
+    PROaligns(...arguments)
     return this
   }
 
   Pro.prototype.aligns = function (selector) {
     if (selector) {
       this.each(function () {
-        Pro.aligns(PRO(selector, this))
+        PROaligns(selector, this)
       })
     } else {
-      Pro.aligns(this)
+      PROaligns(this)
     }
     return this
   }
-}).call(this, PRO)
+})(PRO)

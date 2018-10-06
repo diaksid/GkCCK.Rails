@@ -1,21 +1,21 @@
 (function (PRO) {
   const Pro = PRO()
 
-  Pro.assign({
-    style (el, data) {
-      if (typeof data === 'object') {
-        for (let key in data) {
-          el.style[key] = data[key]
-        }
-        return this
-      } else {
-        const style = el.ownerDocument.defaultView.opener
-          ? el.ownerDocument.defaultView.getComputedStyle(el, null)
-          : window.getComputedStyle(el, null)
-        return (typeof data === 'string') ? style[data] : style
+  const PROstyle = function (el, data) {
+    if (typeof data === 'object') {
+      for (let key in data) {
+        el.style[key] = data[key]
       }
+      return this
+    } else {
+      const style = el.ownerDocument.defaultView.opener
+        ? el.ownerDocument.defaultView.getComputedStyle(el, null)
+        : window.getComputedStyle(el, null)
+      return (typeof data === 'string') ? style[data] : style
     }
-  })
+  }
+
+  Pro.style = PROstyle
 
   Pro.assign({
     html (value = null) {
@@ -29,9 +29,9 @@
 
     style (data) {
       if (typeof data === 'object') {
-        return this.each(el => Pro.style(el, data))
+        return this.each(el => PROstyle(el, data))
       }
-      return this.length && Pro.style(this.first.style, data)
+      return this.length && PROstyle(this.first.style, data)
     },
 
     addClass (...args) {
@@ -52,12 +52,11 @@
 
     append (child) {
       if (child && this.length) {
-        child = Pro.to(child)
-        if (child.length) {
-          this.first.appendChild(child.first)
-        }
+        Pro.to(child).each(el => {
+          this.first.appendChild(el)
+        })
       }
       return this
     }
   }, true)
-}).call(this, PRO)
+})(PRO)

@@ -151,4 +151,4 @@
       })
     }
   }, true)
-}).call(this, window, document, PRO)
+})(window, document, PRO)

@@ -1,10 +1,10 @@
 (function (PRO) {
   const Pro = PRO()
 
-  Pro.yandexMetrika = function (selector = '[data-yandex-metrika]') {
-    Pro.to(selector).each(element => {
+  const PROyandexMetrika = function (selector = '[data-yandex-metrika]') {
+    return Pro.to(selector).each(element => {
       if (element.dataset && element.dataset.yandexMetrika) {
-        new Pro(element)
+        PRO(element)
           .deactive()
           .onclick(el => window.open(
             `//metrika.yandex.ru/dashboard?id=${el.dataset.yandexMetrika}`,
@@ -12,11 +12,15 @@
           ))
       }
     })
+  }
+
+  Pro.yandexMetrika = function () {
+    PROyandexMetrika(...arguments)
     return this
   }
 
   Pro.prototype.yandexMetrika = function () {
-    Pro.yandexMetrika(this)
+    PROyandexMetrika(this)
     return this
   }
-}).call(this, PRO)
+})(PRO)

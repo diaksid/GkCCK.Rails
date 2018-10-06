@@ -160,7 +160,7 @@
         @draw yes
 
 
-  ProJ.lightbox = (options) -> (ProJ.Lightbox ?= new Lightbox options).load()
+  ProJ.lightbox = (options) -> (ProJ.Light_box ?= new Lightbox options).load()
 
 # ----------------------------------------------------------------------------------------------------
 

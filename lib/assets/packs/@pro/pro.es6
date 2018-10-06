@@ -35,6 +35,10 @@
       return this._target[0]
     }
 
+    get isConnected () {
+      return this._target.every(el => el.isConnected)
+    }
+
     static find (selector, context) {
       if (context instanceof Node || context instanceof Window) {
         context = [context]
@@ -93,6 +97,10 @@
       return data instanceof Pro ? data : new Pro(data)
     }
 
+    static tag (tag) {
+      return typeof tag === 'string' && new Pro(document.createElement(tag))
+    }
+
     static isObject (obj) {
       return typeof obj === 'object' &&
         (!obj.constructor || obj.constructor === Object) &&
@@ -129,9 +137,7 @@
 
   window.Pro = Pro
 
-  function PRO () {
+  window.PRO = function () {
     return arguments.length ? new Pro(...arguments) : Pro
   }
-
-  window.PRO = PRO
-}).call(this, window, document)
+})(window, document)

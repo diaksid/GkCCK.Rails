@@ -68,4 +68,4 @@
       return this
     }
   })
-}).call(this, window, document.documentElement, PRO)
+})(window, document.documentElement, PRO)

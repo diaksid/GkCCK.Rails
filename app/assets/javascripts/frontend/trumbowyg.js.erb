@@ -1,0 +1,38 @@
+(function ($, PRO) {
+  var fn = function (els, options) {
+    els.each(function () {
+      $(this).trumbowyg($.extend({},
+        options,
+        $(this).data('redactor')
+      ))
+    })
+  }
+
+  PRO.redactor = function () {
+    var options = {
+      svgPath: '<%= asset_path('trumbowyg/dist/ui/icons.svg') %>',
+      lang: 'ru',
+      btns: [
+        ['viewHTML'],
+        ['undo', 'redo'],
+        ['strong', 'em', 'del'],
+        ['insertImage', 'link'],
+        ['fullscreen']
+      ],
+      autogrow: true
+    }
+    var els = $('[data-redactor]')
+    if (els.length) {
+      if ($.trumbowyg) {
+        fn(els, options)
+      } else {
+        $
+          .stylesheet('<%= asset_path('redactor.css') %>')
+          .script('<%= asset_path('redactor.js') %>', function () {
+            fn(els, options)
+          })
+      }
+    }
+    return this
+  }
+})($, PRO)

@@ -1,6 +1,4 @@
-import jQuery from 'jquery'
-
-const [PROstylesheet, PROscript] = (function (document, jQuery) {
+(function (document, jQuery) {
   function pathCheck (path) {
     if (path.indexOf('//') === -1 && path[0] !== '/') {
       path = '/' + path
@@ -60,17 +58,13 @@ const [PROstylesheet, PROscript] = (function (document, jQuery) {
     }
   }
 
-  return [PROstylesheet, PROscript]
+  jQuery.stylesheet = function () {
+    PROstylesheet(...arguments)
+    return this
+  }
+
+  jQuery.script = function () {
+    PROscript(...arguments)
+    return this
+  }
 })(document, jQuery)
-
-jQuery.stylesheet = function () {
-  PROstylesheet(...arguments)
-  return this
-}
-
-jQuery.script = function () {
-  PROscript(...arguments)
-  return this
-}
-
-export { PROstylesheet, PROscript }

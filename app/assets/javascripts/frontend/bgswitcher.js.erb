@@ -1,0 +1,59 @@
+(function (location, screen, $, PRO) {
+  var bgs = {
+    root: {
+      interval: 15000,
+      shuffle: false,
+      xl: [
+        '<%= asset_path('bg/home/xl/00.jpg') %>',
+        '<%= asset_path('bg/home/xl/01.jpg') %>'
+      ],
+      lg: [
+        '<%= asset_path('bg/home/lg/00.jpg') %>',
+        '<%= asset_path('bg/home/lg/01.jpg') %>'
+      ],
+      sm: [
+        '<%= asset_path('bg/home/sm/00.jpg') %>',
+        '<%= asset_path('bg/home/sm/01.jpg') %>'
+      ]
+    },
+
+    page: {
+      interval: 7500,
+      shuffle: true,
+      xl: [
+        '<%= asset_path('bg/page/xl/00.jpg') %>',
+        '<%= asset_path('bg/page/xl/01.jpg') %>',
+        '<%= asset_path('bg/page/xl/02.jpg') %>'
+      ],
+      lg: [
+        '<%= asset_path('bg/page/lg/00.jpg') %>',
+        '<%= asset_path('bg/page/lg/01.jpg') %>',
+        '<%= asset_path('bg/page/lg/02.jpg') %>'
+      ],
+      sm: [
+        '<%= asset_path('bg/page/sm/00.jpg') %>',
+        '<%= asset_path('bg/page/sm/01.jpg') %>',
+        '<%= asset_path('bg/page/sm/02.jpg') %>'
+      ]
+    }
+  }
+
+  PRO.bgswitcher = function () {
+    if (location.pathname !== '/contact') {
+      var type = (location.pathname === '/') ? 'root' : 'page'
+      var size = 'sm'
+      if (screen.width > 1200) {
+        size = 'xl'
+      } else if (screen.width > 768) {
+        size = 'lg'
+      }
+      $('.pro-header').bgswitcher({
+        duration: 1000,
+        interval: bgs[type].interval,
+        shuffle: bgs[type].shuffle,
+        images: bgs[type][size]
+      })
+    }
+    return this
+  }
+})(location, screen, $, PRO)

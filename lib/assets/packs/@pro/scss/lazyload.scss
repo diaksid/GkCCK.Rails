@@ -8,12 +8,12 @@ $lazyload-data-key: 'lazyload' !default;
 
   &[data-#{$lazyload-data-key}=loading] {
     background-size: 15%;
-    background-image: url("/images/loading/0.svg") !important;
+    background-image: image_url("loading/0.svg") !important;
   }
 
   &[data-#{$lazyload-data-key}=error] {
     background-size: contain;
-    background-image: url("/images/system/error.svg") !important;
+    background-image: image_url("system/error.svg") !important;
   }
 
   &[data-#{$lazyload-data-key}=loaded] {
@@ -23,7 +23,7 @@ $lazyload-data-key: 'lazyload' !default;
 
   &[data-#{$lazyload-data-key}=reset] {
     background-size: contain;
-    background-image: url("/images/system/image.svg");
+    background-image: image_url("system/image.svg");
   }
 
   &--fluid {

@@ -22,7 +22,6 @@
     }
 
     const $document = jQuery(document)
-    const $body = jQuery(document.body)
 
     class PROlightBox {
       constructor (selector, options) {
@@ -33,9 +32,9 @@
         this._options = jQuery.extend({}, Default, options)
         this._select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
         if (this._select.length) {
+          PROlightBox._init(this)
           this._stack = {}
           this._select.each((i, el) => this._load(el))
-          PROlightBox._init(this)
         }
       }
 
@@ -45,7 +44,7 @@
 
       _load (element) {
         if (!jQuery.data.getSet(element, DATA_KEY)) {
-          const path = element.getAttribute('href') || element.dataset.href || element.getAttribute('src')
+          const path = element.dataset.href || element.getAttribute('href') || element.getAttribute('src')
           if (path) {
             const group = (path[0] === '#') ? 'html' : jQuery.data.getSet(element, this._options.attribute)
             if (group && group !== 'html') {
@@ -196,8 +195,9 @@
             .append(this._close)
           this._overlay.append(this._content)
         }
+        this._body = jQuery(document.body)
         if (!this._overlay[0].isConnected) {
-          $body.append(this._overlay)
+          this._body.append(this._overlay)
         }
         this._content.css({ padding: instance._options.padding ? `${instance._options.padding}px` : '' })
         this._overlay
@@ -220,8 +220,8 @@
         if (step) {
           this._content.fadeIn(delay)
         } else {
-          $body.css({
-            paddingRight: `${window.innerWidth - $body.width()}px`,
+          this._body.css({
+            paddingRight: `${window.innerWidth - this._body.width()}px`,
             overflow: 'hidden'
           })
           this._overlay.fadeIn(delay)
@@ -234,7 +234,7 @@
           this._content.fadeOut(delay, callback)
         } else {
           this._overlay.fadeOut(delay, () => {
-            $body.css({
+            this._body.css({
               paddingRight: '',
               overflow: ''
             })

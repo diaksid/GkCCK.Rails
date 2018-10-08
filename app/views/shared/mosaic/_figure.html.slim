@@ -9,9 +9,9 @@ ruby:
            frame: {width: local_assigns[:width] || 800,
                    height: local_assigns[:height] || 600,
                    data: {lazy: path}}}
-  if local_assigns[:lightbox] || local_assigns[:lightbox_href]
-    attrs[:banner][:data] = {lightbox: local_assigns[:lightbox] || true,
-                             lightbox_href: local_assigns[:lightbox_href] ? image_path(lightbox_href) : path}
+  if local_assigns[:light] || local_assigns[:light_href]
+    attrs[:banner][:data] = {light: local_assigns[:light] || true,
+                             href: local_assigns[:light_href] ? image_path(light_href) : path}
   end
   if local_assigns[:align]
     attrs[:frame][:class] = "h-bg--cover-#{align}"
@@ -22,8 +22,8 @@ figure.banner *attrs[:banner]
   canvas.banner__frame.h-bg--cover *attrs[:frame]
 
   link%image href=path
-  - if attrs[:banner][:data] && attrs[:banner][:data][:lightbox_href] != path
-      link%image href=attrs[:banner][:data][:lightbox_href]
+  - if attrs[:banner][:data] && attrs[:banner][:data][:href] != path
+      link%image href=attrs[:banner][:data][:href]
 
   - if header
     header.banner__header

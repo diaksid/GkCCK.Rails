@@ -1,10 +1,9 @@
 //= require ./helpers
 //= require ./bgswitcher
-//= require ./jcarousel
 //= require ./trumbowyg
+//= require ./jcarousel
 //= require ./events
 //= require_self
-
 
 (function (window, document, $, PRO) {
   var turbo = !!window.Turbolinks

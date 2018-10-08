@@ -113,8 +113,8 @@
       constructor (element, options) {
         this._element = element
         this._obj = jQuery(this._element)
-        // this._scope = scope
         this._options = options
+        this._scope = options.scope
         this._delay = this._element.dataset[`${this._options.attribute}Delay`] || this._options.delay
         this._duration = this._element.dataset[`${this._options.attribute}Duration`] || this._options.duration
         this._obj.on(Events.APPEAR, this._appear.bind(this))
@@ -163,43 +163,43 @@
       }
 
       _above () {
-        /* inside scope, regardless of window
+        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.offset().top
           : window.pageYOffset
         return val >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold
-        */
-        return window.pageYOffset >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold
+        /*/
+        return window.pageYOffset >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold*/
       }
 
       _below () {
-        /* inside scope, regardless of window
+        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.innerHeight() + this._scope.offset().top
           : window.innerHeight + window.pageYOffset
         return val <= this._obj.offset().top - this._options.threshold
-        */
-        return window.innerHeight + window.pageYOffset <= this._obj.offset().top - this._options.threshold
+        /*/
+        return window.innerHeight + window.pageYOffset <= this._obj.offset().top - this._options.threshold */
       }
 
       _right () {
-        /* inside scope, regardless of window
+        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.innerWidth() + this._scope.offset().left
           : window.innerWidth + window.pageXOffset
         return val <= this._obj.offset().left - this._options.threshold
-        */
-        return window.innerWidth + window.pageXOffset <= this._obj.offset().left - this._options.threshold
+        /*/
+        return window.innerWidth + window.pageXOffset <= this._obj.offset().left - this._options.threshold */
       }
 
       _left () {
-        /* inside scope, regardless of window
+        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.offset().left
           : window.pageXOffset
         return val >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold
-        */
-        return window.pageXOffset >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold
+        /*/
+        return window.pageXOffset >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold */
       }
 
       _animate () {

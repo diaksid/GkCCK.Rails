@@ -11,7 +11,7 @@
       callback = options
       options = null
     }
-    options = Object.assign({
+    options = jQuery.extend({
       href: pathCheck(path),
       rel: 'stylesheet'
     }, options)
@@ -35,7 +35,7 @@
       callback = options
       options = null
     }
-    options = Object.assign({
+    options = jQuery.extend({
       src: pathCheck(path),
       async: true
     }, options)

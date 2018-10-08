@@ -1,9 +1,26 @@
 (function ($, PRO) {
-  class Carousel {
-    constructor (element, options) {
-      this.obj = $(element)
-      this.outer = this.obj.find('.outer')
-      this.outer.on('jcarousel:reload jcarousel:create', function () {
+  var options = {
+    wrap: 'circular',
+    center: false,
+    duration: 700,
+    easing: 'easeOutSine',
+    autoscroll: 5000,
+    control: true,
+    pagination: true,
+    margin: 0,
+    numbs: {
+      0: 2,
+      576: 3,
+      768: 4,
+      992: 5,
+      1280: 6,
+      1440: 7
+    }
+  }
+  var carousel = function (element, options) {
+    var scope = $(element)
+    scope.find('.outer')
+      .on('jcarousel:reload jcarousel:create', function () {
         var obj = $(this)
         var width = obj.innerWidth()
         var numb = 1
@@ -17,7 +34,7 @@
         obj.jcarousel('items').css({ width: Math.ceil(width / numb - options.margin) + 'px' })
         obj.css({ visibility: 'visible' })
       })
-      this.outer.jcarousel({
+      .jcarousel({
         wrap: options.wrap,
         center: options.center,
         animation: {
@@ -25,83 +42,51 @@
           easing: options.easing
         }
       })
-      this.outer.jcarouselAutoscroll({
+      .jcarouselAutoscroll({
         interval: options.autoscroll,
         target: '+=1',
         autostart: true
       })
-      this
-        ._lazyload()
-        ._control()
-    }
-
-    _lazyload () {
-      $.lazyload(this.obj.find('[data-src]'), {
-        scope: this.obj,
-        attribute: 'src',
-        event: 'jcarousel:animateend'
+    scope.find('.pagination')
+      .jcarouselPagination({
+        item: function (page) {
+          $('<div>').addClass('icon' + (page === '1' ? ' active' : ''))
+        }
       })
-      return this
+      .on('jcarouselpagination:active', '.icon', function () {
+        $(this).addClass('active')
+      })
+      .on('jcarouselpagination:inactive', '.icon', function () {
+        $(this).removeClass('active')
+      })
+    var ctrl = scope.find('.control')
+    if (ctrl.length) {
+      var obj = $('<div>').addClass('prev icon')
+      ctrl.append(obj)
+      obj.jcarouselControl({ target: '-=1' })
+      obj = $('<div>').addClass('next icon')
+      ctrl.append(obj)
+      obj.jcarouselControl({ target: '+=1' })
     }
-
-    _control () {
-      var obj = this.obj.find('.control')
-      if (obj.length) {
-        var el = $('<div/>').addClass('prev icon')
-        obj.append(el)
-        el.jcarouselControl({ target: '-=1' })
-        el = $('<div/>').addClass('next icon')
-        obj.append(el)
-        el.jcarouselControl({ target: '+=1' })
-      }
-      this.obj.find('.pagination')
-        .jcarouselPagination({
-          item: function (page) {
-            $('<div/>').addClass('icon' + (page === '1' ? ' active' : ''))
-          }
-        })
-        .on('jcarouselpagination:active', '.icon', function () {
-          $(this).addClass('active')
-        })
-        .on('jcarouselpagination:inactive', '.icon', function () {
-          $(this).removeClass('active')
-        })
-      return this
-    }
+    $.lazyload(scope.find('[data-src]'), {
+      scope: scope,
+      attribute: 'src',
+      event: 'jcarousel:animateend'
+    })
   }
 
   PRO.carousel = function () {
-    var options = {
-      wrap: 'circular',
-      center: false,
-      duration: 700,
-      easing: 'easeOutSine',
-      autoscroll: 5000,
-      control: true,
-      pagination: true,
-      margin: 0,
-      numbs: {
-        0: 2,
-        576: 3,
-        768: 4,
-        992: 5,
-        1280: 6,
-        1440: 7
-      }
-    }
-    var fn = function (els, options) {
-      els.each(function () {
-        new Carousel(this, options)
-      })
-    }
-    var els = $('[data-carousel]')
-    if (els.length) {
-      if ($.jcarousel) {
-        fn(els, options)
-      } else {
-        $.script('<%= asset_path('carousel.js') %>', function () {
-          fn(els, options)
+    var obj = $('[data-carousel]')
+    if (obj.length) {
+      var fn = function () {
+        obj.each(function () {
+          carousel(this, options)
         })
+      }
+      if ($.jcarousel) {
+        fn()
+      } else {
+        $.script('<%= asset_path('carousel.js') %>', fn)
       }
     }
     return this

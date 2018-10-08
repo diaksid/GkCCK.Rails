@@ -10,8 +10,8 @@
     PRO
       .bgswitcher()
       .carousel()
-    // $('.pro-header--home').canvasSnow()
-    $('.pro-header--grid').canvasGrid()
+    $('.pro-header--home').canvaSnow()
+    $('.pro-header--grid').canvaGrid()
     $('[data-tooltip]').tooltip({
       placement: function (i, element) {
         return element.dataset.tooltip || 'auto'

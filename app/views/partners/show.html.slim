@@ -15,7 +15,7 @@
       .banner.img-thumbnail.float-md-left.mr-md-4.mb-3 class=(@model.image.attached? && 'h-preload')
         = render partial: 'attachments/canvas', object: @model.image,
                 locals: {class: ['banner__frame'],
-                        lightbox: true,
+                        light: true,
                         links: {image: 192,
                                 thumbnail: true}}
 

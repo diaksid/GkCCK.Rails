@@ -2,7 +2,7 @@
   var SCROLL_TOP_MARGIN = 96
 
   window.PRO = {
-    submit () {
+    submit: function () {
       $('[data-submit]').on('change', function () {
         if (this.dataset.submit) {
           document.querySelector(this.dataset.submit).submit()
@@ -13,7 +13,7 @@
       return this
     },
 
-    scroll () {
+    scroll: function () {
       if (screen.width > 767) {
         var $navbar = $('.pro-navbar')
         var cls = 'pro-navbar--fixed'

@@ -1,12 +1,12 @@
-(function (PRO) {
-  const PROinnerHeight = PRO.innerHeight
+(function (jQuery) {
+  const NAME = 'aligns'
 
   const PROaligns = function (selector, context) {
     let val = 0
-    return PRO(selector, context)
+    return jQuery(selector, context)
       .each(function () {
         this.style.height = ''
-        const height = PROinnerHeight(this)
+        const height = jQuery(this).innerHeight()
         if (height > val) {
           val = height
         }
@@ -16,12 +16,7 @@
       })
   }
 
-  PRO.aligns = function () {
-    PROaligns(...arguments)
-    return this
-  }
-
-  PRO.prototype.aligns = function (selector) {
+  jQuery.fn[NAME] = function (selector) {
     if (selector) {
       this.each(function () {
         PROaligns(selector, this)
@@ -31,4 +26,9 @@
     }
     return this
   }
-})(PRO)
+
+  jQuery[NAME] = function () {
+    PROaligns(...arguments)
+    return this
+  }
+})(jQuery)

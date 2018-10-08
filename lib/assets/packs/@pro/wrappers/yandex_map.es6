@@ -106,7 +106,7 @@
       }
     }
 
-    // jQuery.Ymaps = PROymap
+    jQuery.Ymap = PROymap
 
     jQuery.fn[NAME] = PROymap._jQuery
     jQuery.fn[NAME].Constructor = PROymap

@@ -1,5 +1,5 @@
 (function (location, screen, $, PRO) {
-  var bgs = {
+  var options = {
     root: {
       interval: 15000,
       shuffle: false,
@@ -49,9 +49,9 @@
       }
       $('.pro-header').bgswitcher({
         duration: 1000,
-        interval: bgs[type].interval,
-        shuffle: bgs[type].shuffle,
-        images: bgs[type][size]
+        interval: options[type].interval,
+        shuffle: options[type].shuffle,
+        images: options[type][size]
       })
     }
     return this

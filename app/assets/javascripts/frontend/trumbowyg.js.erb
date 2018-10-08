@@ -1,36 +1,34 @@
 (function ($, PRO) {
-  var fn = function (els, options) {
-    els.each(function () {
-      $(this).trumbowyg($.extend({},
-        options,
-        $(this).data('redactor')
-      ))
-    })
+  var options = {
+    svgPath: '<%= asset_path('trumbowyg/dist/ui/icons.svg') %>',
+    lang: 'ru',
+    btns: [
+      ['viewHTML'],
+      ['undo', 'redo'],
+      ['strong', 'em', 'del'],
+      ['insertImage', 'link'],
+      ['fullscreen']
+    ],
+    autogrow: true
   }
 
   PRO.redactor = function () {
-    var options = {
-      svgPath: '<%= asset_path('trumbowyg/dist/ui/icons.svg') %>',
-      lang: 'ru',
-      btns: [
-        ['viewHTML'],
-        ['undo', 'redo'],
-        ['strong', 'em', 'del'],
-        ['insertImage', 'link'],
-        ['fullscreen']
-      ],
-      autogrow: true
-    }
-    var els = $('[data-redactor]')
-    if (els.length) {
+    var obj = $('[data-redactor]')
+    if (obj.length) {
+      var fn = function () {
+        obj.each(function () {
+          $(this).trumbowyg($.extend({},
+            options,
+            $(this).data('redactor')
+          ))
+        })
+      }
       if ($.trumbowyg) {
-        fn(els, options)
+        fn()
       } else {
         $
           .stylesheet('<%= asset_path('redactor.css') %>')
-          .script('<%= asset_path('redactor.js') %>', function () {
-            fn(els, options)
-          })
+          .script('<%= asset_path('redactor.js') %>', fn)
       }
     }
     return this

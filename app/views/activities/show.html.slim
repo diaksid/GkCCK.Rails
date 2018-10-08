@@ -27,7 +27,7 @@
       .banner.img-thumbnail.d-none.d-md-block.float-left.mr-3.h-preload
         = render partial: 'attachments/canvas', object: @model.image,
                 locals: {class: ['banner__frame'],
-                         lightbox: "#{action_name}-lightbox",
+                         light: "#{action_name}-lightbox",
                          links: {thumbnail: true}}
 
     - unless @model.content.blank?

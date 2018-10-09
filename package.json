@@ -5,7 +5,6 @@
   "author": "daks.pro",
   "private": true,
   "dependencies": {
-    "@babel/eslint": "^",
     "animate.css": "^3.7.0",
     "autosize": "^4.0.2",
     "bootstrap": "^4.1.3",

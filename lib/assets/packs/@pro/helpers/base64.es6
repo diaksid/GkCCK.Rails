@@ -1,17 +1,18 @@
 (function (jQuery) {
-  const NAME = 'base64'
-  const DATA_KEY = jQuery.data.toKey(NAME)
-  const DATA_SET = jQuery.data.toSet(NAME)
+  const PRObase64 = function (selector) {
+    const DATA_KEY = 'base64'
+    const dataSet = jQuery.data.toSet(DATA_KEY)
 
-  const PRObase64 = function (selector = `[data-${DATA_KEY}]`) {
-    return jQuery(selector)
+    return jQuery(selector || `[data-${jQuery.data.toKey(DATA_KEY)}]`)
       .filter(function () {
-        return this.dataset && this.dataset[DATA_SET]
+        return this.dataset && this.dataset[dataSet]
       })
       .each(function () {
-        this.innerHTML += atob(this.dataset[DATA_SET])
+        this.innerHTML += atob(this.dataset[dataSet])
       })
   }
+
+  const NAME = 'proBase64'
 
   jQuery.fn[NAME] = function () {
     return PRObase64(this, ...arguments)

@@ -1,11 +1,9 @@
 (function (document, jQuery) {
   const PROlightBox = (function () {
-    const NAME = 'lightbox'
     const VERSION = '0.0.1'
 
-    const DATA_KEY = 'lightbox'
-    const EVENT_KEY = `${DATA_KEY}.`
-    const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+    const DATA_KEY = 'pro.lightbox'
+    const EVENT_KEY = `${DATA_KEY}:`
 
     const Events = {
       'OPEN': `${EVENT_KEY}open`,
@@ -30,7 +28,7 @@
           selector = null
         }
         this._options = jQuery.extend({}, Default, options)
-        const select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
+        const select = jQuery(selector || `[data-${this._options.attribute}]`)
         if (select.length) {
           PROlightBox._init(this)
           this._stack = {}
@@ -144,7 +142,6 @@
         this._path = this._stack[this._group][index]
         this._hide(() => this._draw(true))
       }
-
       static on (event, handler) {
         document.addEventListener(Events[event.toUpperCase()], handler)
         return this
@@ -257,19 +254,23 @@
       }
     }
 
-    jQuery.LightBox = PROlightBox
-
-    jQuery.fn[NAME] = PROlightBox._jQuery
-    jQuery.fn[NAME].Constructor = PROlightBox
-    jQuery.fn[NAME].noConflict = function () {
-      jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-      return PROlightBox._jQuery
-    }
-    jQuery[NAME] = function () {
-      (() => new PROlightBox(...arguments))()
-      return this
-    }
-
     return PROlightBox
   })()
+
+  jQuery.PROlightBox = PROlightBox
+
+  const NAME = 'proLightBox'
+  const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+
+  jQuery.fn[NAME] = PROlightBox._jQuery
+  jQuery.fn[NAME].Constructor = PROlightBox
+  jQuery.fn[NAME].noConflict = function () {
+    jQuery.fn[NAME] = JQUERY_NO_CONFLICT
+    return PROlightBox._jQuery
+  }
+
+  jQuery[NAME] = function () {
+    (() => new PROlightBox(...arguments))()
+    return this
+  }
 })(document, jQuery)

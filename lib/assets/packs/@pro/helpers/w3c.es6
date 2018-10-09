@@ -1,15 +1,16 @@
 (function (jQuery) {
-  const NAME = 'w3c'
-  const DATA_KEY = jQuery.data.toKey(NAME)
+  const PROw3c = function (selector) {
+    const DATA_KEY = 'w3c'
 
-  const PROw3c = function (selector = `[data-${DATA_KEY}]`) {
-    return jQuery(selector)
+    return jQuery(selector || `[data-${jQuery.data.toKey(DATA_KEY)}]`)
       .deactive()
       .click(() => window.open(
         `//validator.w3.org/nu/?doc=${encodeURIComponent(location.href)}&showsource=yes&showoutline=yes`,
         '_blank'
       ))
   }
+
+  const NAME = 'proW3C'
 
   jQuery.fn[NAME] = function () {
     return PROw3c(this, ...arguments)

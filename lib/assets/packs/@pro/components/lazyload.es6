@@ -1,11 +1,9 @@
 (function (window, document, jQuery) {
   const PROlazyLoad = (function () {
-    const NAME = 'lazyload'
     const VERSION = '0.0.3'
-    const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
 
-    const DATA_KEY = 'lazyload'
-    const EVENT_KEY = `${DATA_KEY}.`
+    const DATA_KEY = 'pro.lazyload'
+    const EVENT_KEY = `${DATA_KEY}:`
 
     const Events = {
       'UPDATE': `${EVENT_KEY}update`,
@@ -36,9 +34,12 @@
           options = selector
           selector = null
         }
-        this._options = jQuery.extend({}, Default, options)
-        this._select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
-        if (this._select.length) {
+        this._options = jQuery.extend({},
+          Default,
+          options
+        )
+        const select = jQuery(selector || `[data-${this._options.attribute}]`)
+        if (select.length) {
           this._scope = this._options.scope && jQuery(this._options.scope)
           if (this._scope) {
             this._scope.on(this._options.event, this._update.bind(this))
@@ -51,7 +52,7 @@
             $document.on(this._options.reset, this._reset.bind(this))
           }
           this._items = []
-          this._select.each((i, el) => this._load(el))
+          select.each((i, el) => this._load(el))
         }
       }
 
@@ -81,10 +82,6 @@
       _reset () {
         this._items.forEach(item => item._reset())
         this._items = []
-      }
-
-      static get name () {
-        return NAME
       }
 
       static get version () {
@@ -163,43 +160,31 @@
       }
 
       _above () {
-        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.offset().top
           : window.pageYOffset
         return val >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold
-        /*/
-        return window.pageYOffset >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold*/
       }
 
       _below () {
-        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.innerHeight() + this._scope.offset().top
           : window.innerHeight + window.pageYOffset
         return val <= this._obj.offset().top - this._options.threshold
-        /*/
-        return window.innerHeight + window.pageYOffset <= this._obj.offset().top - this._options.threshold */
       }
 
       _right () {
-        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.innerWidth() + this._scope.offset().left
           : window.innerWidth + window.pageXOffset
         return val <= this._obj.offset().left - this._options.threshold
-        /*/
-        return window.innerWidth + window.pageXOffset <= this._obj.offset().left - this._options.threshold */
       }
 
       _left () {
-        /* inside scope, regardless of window */
         const val = this._scope
           ? this._scope.offset().left
           : window.pageXOffset
         return val >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold
-        /*/
-        return window.pageXOffset >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold */
       }
 
       _animate () {
@@ -220,7 +205,6 @@
           this._element.style.backgroundImage = `url("${this._options.mask}")`
         }
         this._dataKey = 'reset'
-        // delete this
       }
 
       get _dataKey () {
@@ -232,19 +216,23 @@
       }
     }
 
-    jQuery.LazyLoad = PROlazyLoad
-
-    jQuery.fn[NAME] = PROlazyLoad._jQuery
-    jQuery.fn[NAME].Constructor = PROlazyLoad
-    jQuery.fn[NAME].noConflict = function () {
-      jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-      return PROlazyLoad._jQuery
-    }
-    jQuery[NAME] = function () {
-      (() => new PROlazyLoad(...arguments))()
-      return this
-    }
-
     return PROlazyLoad
   })()
+
+  jQuery.PROlazyLoad = PROlazyLoad
+
+  const NAME = 'proLazyLoad'
+  const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+
+  jQuery.fn[NAME] = PROlazyLoad._jQuery
+  jQuery.fn[NAME].Constructor = PROlazyLoad
+  jQuery.fn[NAME].noConflict = function () {
+    jQuery.fn[NAME] = JQUERY_NO_CONFLICT
+    return PROlazyLoad._jQuery
+  }
+
+  jQuery[NAME] = function () {
+    (() => new PROlazyLoad(...arguments))()
+    return this
+  }
 })(window, document, jQuery)

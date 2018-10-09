@@ -1,11 +1,8 @@
 (function (jQuery) {
   const PROscrollTo = (function () {
-    const NAME = 'scrollTo'
     const VERSION = '0.0.1'
 
     const DATA_KEY = 'scroll.to'
-    // const EVENT_KEY = `${DATA_KEY}.`
-    const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
 
     const Default = {
       selector: `[data-${jQuery.data.toKey(DATA_KEY)}]`,
@@ -98,19 +95,21 @@
       }
     }
 
-    jQuery.ScrollTo = PROscrollTo
-
-    jQuery.fn[NAME] = PROscrollTo._jQuery
-    jQuery.fn[NAME].Constructor = PROscrollTo
-    jQuery.fn[NAME].noConflict = function () {
-      jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-      return PROscrollTo._jQuery
-    }
-    jQuery[NAME] = function () {
-      (() => new PROscrollTo(...arguments))()
-      return this
-    }
-
     return PROscrollTo
   })()
+
+  const NAME = 'proScrollTo'
+  const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+
+  jQuery.fn[NAME] = PROscrollTo._jQuery
+  jQuery.fn[NAME].Constructor = PROscrollTo
+  jQuery.fn[NAME].noConflict = function () {
+    jQuery.fn[NAME] = JQUERY_NO_CONFLICT
+    return PROscrollTo._jQuery
+  }
+
+  jQuery[NAME] = function () {
+    (() => new PROscrollTo(...arguments))()
+    return this
+  }
 })(jQuery)

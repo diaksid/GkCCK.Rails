@@ -1,19 +1,18 @@
 (function (jQuery) {
-  const NAME = 'mailto'
-  const DATA_KEY = jQuery.data.toKey(NAME)
-  const DATA_SET = jQuery.data.toSet(NAME)
+  const PROmailto = function (selector) {
+    const DATA_KEY = 'mailto'
+    const dataSet = jQuery.data.toSet(DATA_KEY)
 
-  const PROmailto = function (selector = `[data-${DATA_KEY}]`) {
-    return jQuery(selector)
+    return jQuery(selector || `[data-${jQuery.data.toKey(DATA_KEY)}]`)
       .filter(function () {
-        return this.dataset && this.dataset.hasOwnProperty(NAME)
+        return this.dataset && this.dataset.hasOwnProperty(dataSet)
       })
       .deactive()
       .each(function () {
-        const mail = this.dataset && atob(this.dataset[DATA_SET])
+        const mail = this.dataset && atob(this.dataset[dataSet])
         if (mail) {
           this.href = `mailto://${mail}`
-          if (!this.dataset.hasOwnProperty(`${DATA_SET}Safe`)) {
+          if (!this.dataset.hasOwnProperty(`${dataSet}Safe`)) {
             this.innerHTML += mail
           }
         } else {
@@ -21,6 +20,8 @@
         }
       })
   }
+
+  const NAME = 'proMailTo'
 
   jQuery.fn[NAME] = function () {
     return PROmailto(this, ...arguments)

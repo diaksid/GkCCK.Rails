@@ -1,14 +1,15 @@
 (function (jQuery) {
-  const NAME = 'deactive'
-  const DATA_KEY = jQuery.data.toKey(NAME)
+  const PROdeactive = function (selector) {
+    const DATA_KEY = 'deactive'
 
-  const PROdeactive = function (selector = `[data-${DATA_KEY}]`) {
-    return jQuery(selector).click(event => {
+    return jQuery(selector || `[data-${jQuery.data.toKey(DATA_KEY)}]`).click(event => {
       event.preventDefault()
       event.stopPropagation()
       return false
     })
   }
+
+  const NAME = 'deactive'
 
   jQuery.fn[NAME] = function () {
     return PROdeactive(this, ...arguments)

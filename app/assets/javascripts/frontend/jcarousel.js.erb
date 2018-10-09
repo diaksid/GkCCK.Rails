@@ -1,4 +1,5 @@
 (function ($, PRO) {
+  /*
   var options = {
     wrap: 'circular',
     center: false,
@@ -68,20 +69,18 @@
           $(this).removeClass('active')
         })
     }
-    $.lazyload(scope.find('[data-src]'), {
+    $.proLazyLoad(scope.find('[data-src]'), {
       scope: scope,
       attribute: 'src',
       event: 'jcarousel:animateend'
     })
   }
-
+  */
   PRO.carousel = function () {
     var obj = $('[data-pro-jcarousel]')
     if (obj.length) {
       var fn = function () {
-        obj.each(function () {
-          carousel(this, options)
-        })
+        obj.proJcarousel()
       }
       if ($.jcarousel) {
         fn()

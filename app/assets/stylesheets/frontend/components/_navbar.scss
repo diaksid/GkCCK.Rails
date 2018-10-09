@@ -156,7 +156,8 @@
     }
 
     .navbar-collapse {
-      @include border-radius(0);
+      background-color: transparent;
+      border-radius: 0;
 
       &.collapsing,
       &.show {
@@ -169,6 +170,10 @@
         .dropdown-menu {
           position: relative;
         }
+      }
+
+      &.show {
+        overflow-y: auto;
       }
     }
   }

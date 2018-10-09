@@ -1,6 +1,4 @@
 (function (jQuery) {
-  const NAME = 'aligns'
-
   const PROaligns = function (selector, context) {
     let val = 0
     return jQuery(selector, context)
@@ -15,6 +13,8 @@
         this.style.height = `${val}px`
       })
   }
+
+  const NAME = 'proAligns'
 
   jQuery.fn[NAME] = function (selector) {
     if (selector) {

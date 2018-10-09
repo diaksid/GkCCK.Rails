@@ -1,14 +1,11 @@
 (function (window, jQuery) {
-  const PROymap = (function () {
-    const NAME = 'yandexMap'
+  const PROyandexMap = (function () {
     const VERSION = '0.0.1'
 
-    const DATA_KEY = 'yandex.map'
-    // const EVENT_KEY = `${DATA_KEY}.`
-    const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+    const DATA_KEY = 'pro.yandex.map'
 
     const Default = {
-      selector: `.c-${jQuery.data.toKey(DATA_KEY)}`,
+      selector: `.${jQuery.data.toKey(DATA_KEY)}`,
       zoom: 14,
       type: 'yandex#map',
       behaviors: ['default'],
@@ -16,7 +13,7 @@
       preset: 'islands#redDotIcon'
     }
 
-    class PROymap {
+    class PROyandexMap {
       constructor (selector, options) {
         if (jQuery.isPlainObject(selector)) {
           options = selector
@@ -101,24 +98,26 @@
       }
 
       static _jQuery () {
-        (() => new PROymap(this, ...arguments))()
+        (() => new PROyandexMap(this, ...arguments))()
         return this
       }
     }
 
-    jQuery.Ymap = PROymap
-
-    jQuery.fn[NAME] = PROymap._jQuery
-    jQuery.fn[NAME].Constructor = PROymap
-    jQuery.fn[NAME].noConflict = function () {
-      jQuery.fn[NAME] = JQUERY_NO_CONFLICT
-      return PROymap._jQuery
-    }
-    jQuery[NAME] = function () {
-      (() => new PROymap(...arguments))()
-      return this
-    }
-
-    return PROymap
+    return PROyandexMap
   })()
+
+  const NAME = 'proYandexMap'
+  const JQUERY_NO_CONFLICT = jQuery.fn[NAME]
+
+  jQuery.fn[NAME] = PROyandexMap._jQuery
+  jQuery.fn[NAME].Constructor = PROyandexMap
+  jQuery.fn[NAME].noConflict = function () {
+    jQuery.fn[NAME] = JQUERY_NO_CONFLICT
+    return PROyandexMap._jQuery
+  }
+
+  jQuery[NAME] = function () {
+    (() => new PROyandexMap(...arguments))()
+    return this
+  }
 })(window, jQuery)

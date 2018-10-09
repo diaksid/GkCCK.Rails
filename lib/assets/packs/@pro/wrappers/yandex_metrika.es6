@@ -1,19 +1,20 @@
 (function (jQuery) {
-  const NAME = 'yandexMetrika'
-  const DATA_KEY = jQuery.data.toKey(NAME)
-  const DATA_SET = jQuery.data.toSet(NAME)
+  const PROyandexMetrika = function (selector) {
+    const DATA_KEY = 'yandex-metrika'
+    const dataSet = jQuery.data.toSet(DATA_KEY)
 
-  const PROyandexMetrika = function (selector = `[data-${DATA_KEY}]`) {
-    return jQuery(selector)
+    return jQuery(selector || `[data-${jQuery.data.toKey(DATA_KEY)}]`)
       .filter(function () {
-        return this.dataset && this.dataset[DATA_SET]
+        return this.dataset && this.dataset[dataSet]
       })
       .deactive()
       .click(event => window.open(
-        `//metrika.yandex.ru/dashboard?id=${event.target.dataset[DATA_SET]}`,
+        `//metrika.yandex.ru/dashboard?id=${event.target.dataset[dataSet]}`,
         '_blank'
       ))
   }
+
+  const NAME = 'proYandexMetrika'
 
   jQuery.fn[NAME] = function () {
     return PROyandexMetrika(this, ...arguments)

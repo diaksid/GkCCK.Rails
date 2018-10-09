@@ -1,0 +1,93 @@
+$jcarousel-data-key: 'pro-jcarousel' !default;
+
+[data-#{$jcarousel-data-key}] {
+  .outer {
+    position: relative;
+    overflow: hidden;
+    visibility: hidden;
+    background-color: #f8f9fa;
+  }
+
+  .inner {
+    display: flex;
+    position: relative;
+    width: 9999em;
+  }
+
+  .item {
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .control {
+    position: relative;
+    height: 3rem;
+  }
+
+  .icon {
+    padding: 0.5rem;
+    color: #dee2e6;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      color: #495057;
+    }
+  }
+
+  .prev,
+  .next,
+  .pagination {
+    position: absolute;
+    top: 0.5rem;
+  }
+
+  .prev {
+    right: 5rem;
+    // @include icon-step-backward();
+    &::before {
+      content: "◄";
+    }
+  }
+
+  .next {
+    right: 0;
+    // @include icon-step-forward();
+    &::before {
+      content: "►";
+    }
+  }
+
+  .pagination {
+    margin: 0;
+    padding: 0;
+    left: 0;
+
+    .icon {
+      margin-right: 0.25rem;
+      font-size: 0.75rem;
+      // @include icon-square-o();
+      &::before {
+        content: "⚪";
+      }
+
+      &:hover {
+        // @include icon-square();
+        &::before {
+          content: "⚫";
+        }
+      }
+
+      &.active {
+        color: #adb5bd;
+        cursor: default;
+        // @include icon-square();
+        &::before {
+          content: "⚫";
+        }
+      }
+    }
+  }
+}

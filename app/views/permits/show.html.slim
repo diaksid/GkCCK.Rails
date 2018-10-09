@@ -13,8 +13,11 @@
 
       - unless @model.images.empty?
         ruby:
-          size = {width: 192, height: 144} if @model.image.metadata[:width] > @model.image.metadata[:height]
-          size = {width: 144, height: 192} if @model.image.metadata[:width] < @model.image.metadata[:height]
+          size = {}
+          if @model.images.attached?
+            size = {width: 192, height: 144} if @model.image.metadata[:width] > @model.image.metadata[:height]
+            size = {width: 144, height: 192} if @model.image.metadata[:width] < @model.image.metadata[:height]
+          end
         .col-md-6
           .albom = render partial: 'attachments/canvas', collection: @model.images,
                           layout: 'attachments/banner',

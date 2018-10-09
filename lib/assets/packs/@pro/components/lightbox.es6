@@ -30,11 +30,11 @@
           selector = null
         }
         this._options = jQuery.extend({}, Default, options)
-        this._select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
-        if (this._select.length) {
+        const select = jQuery(selector || `[data-${jQuery.data.toKey(this._options.attribute)}]`)
+        if (select.length) {
           PROlightBox._init(this)
           this._stack = {}
-          this._select.each((i, el) => this._load(el))
+          select.each((i, element) => this._load(element))
         }
       }
 

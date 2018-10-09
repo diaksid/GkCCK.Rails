@@ -22,11 +22,11 @@
           options = selector
           selector = null
         }
-        this._options = jQuery.extend({}, Default, options)
-        this._select = jQuery(selector || this._options.selector)
-        if (this._select.length) {
-          this._select.each((i, el) => this._load(el))
-        }
+        this._options = jQuery.extend({},
+          Default,
+          options
+        )
+        jQuery(selector || this._options.selector).each((i, element) => this._load(element))
       }
 
       _load (element) {

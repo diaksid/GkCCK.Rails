@@ -2,7 +2,7 @@ $icon-class-iclude: true !default;
 
 <% _.each(glyphs, function(glyph) { %>
 @mixin <%= cssClass %>-<%= glyph.fileName %>() {
-  &:before {
+  &::before {
     content: "\<%= glyph.codePoint %>";
   }
 }
@@ -11,7 +11,7 @@ $icon-class-iclude: true !default;
 @if $icon-class-iclude {
 <% _.each(glyphs, function(glyph) { %>
 .<%= cssClass %>-<%= glyph.fileName %> {
-  &:before {
+  &::before {
     content: "\<%= glyph.codePoint %>";
   }
 }

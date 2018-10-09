@@ -6,11 +6,11 @@
     $
       .lazyload()
       .lightbox()
-      .yandexMap('.c-yandex-map')
+      .yandexMap()
     PRO
       .bgswitcher()
       .carousel()
-    $('.pro-header--home').canvaSnow()
+    // $('.pro-header--home').canvaSnow()
     $('.pro-header--grid').canvaGrid()
     $('[data-tooltip]').tooltip({
       placement: function (i, element) {

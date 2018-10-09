@@ -47,18 +47,6 @@
         target: '+=1',
         autostart: true
       })
-    scope.find('.pagination')
-      .jcarouselPagination({
-        item: function (page) {
-          $('<div>').addClass('icon' + (page === '1' ? ' active' : ''))
-        }
-      })
-      .on('jcarouselpagination:active', '.icon', function () {
-        $(this).addClass('active')
-      })
-      .on('jcarouselpagination:inactive', '.icon', function () {
-        $(this).removeClass('active')
-      })
     var ctrl = scope.find('.control')
     if (ctrl.length) {
       var obj = $('<div>').addClass('prev icon')
@@ -67,6 +55,18 @@
       obj = $('<div>').addClass('next icon')
       ctrl.append(obj)
       obj.jcarouselControl({ target: '+=1' })
+      ctrl.find('.pagination')
+        .jcarouselPagination({
+          item: function (page) {
+            return $('<div>').addClass('icon' + (page === '1' ? ' active' : ''))
+          }
+        })
+        .on('jcarouselpagination:active', '.icon', function () {
+          $(this).addClass('active')
+        })
+        .on('jcarouselpagination:inactive', '.icon', function () {
+          $(this).removeClass('active')
+        })
     }
     $.lazyload(scope.find('[data-src]'), {
       scope: scope,
@@ -76,7 +76,7 @@
   }
 
   PRO.carousel = function () {
-    var obj = $('[data-carousel]')
+    var obj = $('[data-pro-jcarousel]')
     if (obj.length) {
       var fn = function () {
         obj.each(function () {

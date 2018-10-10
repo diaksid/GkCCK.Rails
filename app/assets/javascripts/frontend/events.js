@@ -34,10 +34,10 @@
       }
     })
     var objs = $('.navbar-toggler, .navbar-collapse')
-    var scrollbarWidth = `${window.innerWidth - $(document.body).width()}px`
+    var scrollbarWidth = (window.innerWidth - $(document.body).width()) + 'px'
     $.PROlightBox
-      .on('open', () => objs.css({marginRight: scrollbarWidth}))
-      .on('close', () => objs.css({marginRight: ''}))
+      .on('open', function () { objs.css({marginRight: scrollbarWidth}) })
+      .on('close', function () { objs.css({marginRight: ''}) })
     $('.pro-navbar').addClass('h-gradient--top')
     return this
   }

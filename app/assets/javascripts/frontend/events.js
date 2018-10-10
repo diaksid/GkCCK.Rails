@@ -33,6 +33,11 @@
         return element.dataset.tooltip || 'auto'
       }
     })
+    var objs = $('.navbar-toggler, .navbar-collapse')
+    var scrollbarWidth = `${window.innerWidth - $(document.body).width()}px`
+    $.PROlightBox
+      .on('open', () => objs.css({marginRight: scrollbarWidth}))
+      .on('close', () => objs.css({marginRight: ''}))
     $('.pro-navbar').addClass('h-gradient--top')
     return this
   }

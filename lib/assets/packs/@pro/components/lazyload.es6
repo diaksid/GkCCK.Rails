@@ -1,4 +1,6 @@
 (function (window, document, jQuery) {
+  const PROdata = jQuery.data
+
   const PROlazyLoad = (function () {
     const VERSION = '0.0.3'
 
@@ -57,7 +59,7 @@
       }
 
       _load (element) {
-        if (!jQuery.data.getSet(element, DATA_KEY)) {
+        if (!PROdata.getSet(element, DATA_KEY)) {
           const item = new Lazy(element, this._options)
           item._appear()
           this._items.push(item)
@@ -110,11 +112,11 @@
       constructor (element, options) {
         this._element = element
         this._obj = jQuery(this._element)
-        this._options = options
-        this._scope = options.scope
-        this._delay = this._element.dataset[`${this._options.attribute}Delay`] || this._options.delay
-        this._duration = this._element.dataset[`${this._options.attribute}Duration`] || this._options.duration
+        this._scope = options.scope && jQuery(options.scope)
+        this._delay = this._element.dataset[`${options.attribute}Delay`] || options.delay
+        this._duration = this._element.dataset[`${options.attribute}Duration`] || options.duration
         this._obj.on(Events.APPEAR, this._appear.bind(this))
+        this._options = options
       }
 
       _appear () {
@@ -134,7 +136,7 @@
       }
 
       _loader () {
-        const path = jQuery.data.getSet(this._element, this._options.attribute)
+        const path = PROdata.getSet(this._element, this._options.attribute)
         this._dataKey = 'loading'
         if (this._options.mask) {
           if (this._element.tagName === 'IMG') {
@@ -163,28 +165,32 @@
         const val = this._scope
           ? this._scope.offset().top
           : window.pageYOffset
-        return val >= this._obj.outerHeight() + this._obj.offset().top + this._options.threshold
+        return val >=
+          this._obj.outerHeight() + this._obj.offset().top + this._options.threshold
       }
 
       _below () {
         const val = this._scope
           ? this._scope.innerHeight() + this._scope.offset().top
           : window.innerHeight + window.pageYOffset
-        return val <= this._obj.offset().top - this._options.threshold
+        return val <=
+          this._obj.offset().top - this._options.threshold
       }
 
       _right () {
         const val = this._scope
           ? this._scope.innerWidth() + this._scope.offset().left
           : window.innerWidth + window.pageXOffset
-        return val <= this._obj.offset().left - this._options.threshold
+        return val <=
+          this._obj.offset().left - this._options.threshold
       }
 
       _left () {
         const val = this._scope
           ? this._scope.offset().left
           : window.pageXOffset
-        return val >= this._obj.outerWidth() + this._obj.offset().left + this._options.threshold
+        return val >=
+          this._obj.outerWidth() + this._obj.offset().left + this._options.threshold
       }
 
       _animate () {
@@ -208,11 +214,11 @@
       }
 
       get _dataKey () {
-        return jQuery.data.getSet(this._element, DATA_KEY)
+        return PROdata.getSet(this._element, DATA_KEY)
       }
 
       set _dataKey (value) {
-        return jQuery.data.setSet(this._element, DATA_KEY, value)
+        return PROdata.setSet(this._element, DATA_KEY, value)
       }
     }
 

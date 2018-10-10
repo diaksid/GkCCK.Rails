@@ -1,4 +1,6 @@
 (function (document, jQuery) {
+  const PROdata = jQuery.data
+
   const PROlightBox = (function () {
     const VERSION = '0.0.1'
 
@@ -41,10 +43,10 @@
       }
 
       _load (element) {
-        if (!jQuery.data.getSet(element, DATA_KEY)) {
+        if (!PROdata.getSet(element, DATA_KEY)) {
           const path = element.dataset.href || element.getAttribute('href') || element.getAttribute('src')
           if (path) {
-            const group = (path[0] === '#') ? 'html' : jQuery.data.getSet(element, this._options.attribute)
+            const group = (path[0] === '#') ? 'html' : PROdata.getSet(element, this._options.attribute)
             if (group && group !== 'html') {
               if (!this._stack[group]) {
                 this._stack[group] = []
@@ -66,7 +68,7 @@
             })
             element.style.cursor = 'pointer'
           }
-          jQuery.data.setSet(element, DATA_KEY, 'loaded')
+          PROdata.setSet(element, DATA_KEY, 'loaded')
         }
         return this
       }
@@ -143,7 +145,7 @@
         this._hide(() => this._draw(true))
       }
       static on (event, handler) {
-        document.addEventListener(Events[event.toUpperCase()], handler)
+        $document.on(Events[event.toUpperCase()], handler)
         return this
       }
 
@@ -156,7 +158,7 @@
       }
 
       static get _dataKey () {
-        return jQuery.data.toKey(DATA_KEY)
+        return PROdata.toKey(DATA_KEY)
       }
 
       static _init (instance) {

@@ -10,7 +10,7 @@ ruby:
   itemtype='http://schema.org/Dataset'
   )
   .container
-    .catalog__figure
+    .catalog__figure.d-none.d-md-block
       a%mainEntityOfPage.banner.img-thumbnail(
         class=(partner.image.attached? ? 'h-preload' : '')
         href= path
@@ -20,12 +20,12 @@ ruby:
                           links: {image: 192,
                                   thumbnail: true}}
 
-    .catalog__content
+    .catalog__content.flex-grow-1
       h3%name.mb-3: a%url.h-text--href href=path = partner.name
       - for item in partner.targets
         a.item.h-text--href href=target_path(item)
           ^icon-building-o.text-info
-          .flex-grow-1.mx-3  = item.name
+          .flex-grow-1.mx-3 = item.name
           .icon.text-danger class=importance[item.importance]
       - for item in partner.permits
         a.item.h-text--href href=permit_path(item)

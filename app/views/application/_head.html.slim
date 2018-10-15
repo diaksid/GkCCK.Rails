@@ -11,6 +11,10 @@
 
   = javascript_include_tag 'application', defer: true, 'data-turbolinks-track': 'reload'
 
+  /script(
+    src='//cdn.polyfill.io/v1/polyfill.js?features=es6'
+    data-turbolinks-track='reload'
+    )
   //[if lt IE 9]
     script[
       src='/javascripts/html5bility.min.js'

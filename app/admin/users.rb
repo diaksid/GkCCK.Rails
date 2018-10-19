@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-  menu parent: 'utils', priority: 0
+  # menu parent: 'utils', priority: 0
+  menu priority: 8
 
   permit_params :email, :password, :password_confirmation,
                 :is_admin, :in_staff,

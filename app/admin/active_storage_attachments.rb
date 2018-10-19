@@ -1,5 +1,5 @@
 ActiveAdmin.register ActiveStorage::Attachment do
-  menu parent: 'utils', priority: 1,
+  menu parent: 'utils', priority: 0,
        label: I18n.t('active_admin.local.storage_attachments')
 
   permit_params :name, :record, :blob, :created_at,

@@ -1,5 +1,5 @@
 ActiveAdmin.register ActiveStorage::Blob do
-  menu parent: 'utils', priority: 2,
+  menu parent: 'utils', priority: 1,
        label: I18n.t('active_admin.local.storage_blobs')
 
   permit_params :key, :filename, :content_type, :metadata, :byte_size, :checksum, :created_at

@@ -229,6 +229,12 @@ ActiveAdmin.register Partner do
 
 
   controller do
+    def create
+      super do |format|
+        redirect_to edit_admin_partner_path(resource) and return if resource.valid?
+      end
+    end
+
     def update
       image = params[:partner].include?(:image) ? params[:partner].delete('image') : false
       super do |format|

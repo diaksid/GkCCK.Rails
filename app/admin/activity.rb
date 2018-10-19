@@ -158,6 +158,12 @@ ActiveAdmin.register Activity do
 
 
   controller do
+    def create
+      super do |format|
+        redirect_to edit_admin_activity_path(resource) and return if resource.valid?
+      end
+    end
+
     def update
       params[:activity][:area_ids] = [] unless params[:activity].include? :area_ids
       purge = []
@@ -169,14 +175,22 @@ ActiveAdmin.register Activity do
           end
         end
       end
-      begin
-        super
-      rescue
-      else
-        if params[:activity][:images_purge] == '1'
-          Activity.find(params[:id]).images.purge
-        elsif !purge.empty?
-          ActiveStorage::Attachment.find(purge).each(&:purge)
+      images = params[:activity].include?(:images) ? params[:activity].delete('images') : false
+      super do |format|
+        if resource.valid?
+          if params[:activity][:images_purge] == '1'
+            resource.images.purge
+          elsif !purge.empty?
+            ActiveStorage::Attachment.find(purge).each(&:purge)
+          end
+          if images
+            resource.images.attach images
+          end
+          if !resource.images.empty? && (!purge.empty? || images)
+            resource.images.order(:index).each.with_index do |item, idx|
+              item.update_column :index, idx
+            end
+          end
         end
       end
     end

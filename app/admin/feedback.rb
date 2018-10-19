@@ -7,9 +7,9 @@ ActiveAdmin.register Feedback do
                 :header, :content,
                 :title, :keywords, :description, :canonical, :robots,
                 :partner_id, :partner_as, :source,
-                :image, :image_purge
+                :images_purge, images: [], images_attachments_attributes: [:id, :index, :_destroy]
 
-  includes :partner
+  includes :partner, :images_attachments
 
 
   scope :all, default: true
@@ -110,12 +110,39 @@ ActiveAdmin.register Feedback do
 
 
   controller do
+    def create
+      super do |format|
+        redirect_to edit_admin_feedback_path(resource) and return if resource.valid?
+      end
+    end
+
     def update
-      begin
-        super
-      rescue
-      else
-        Activity.find(params[:id]).image.purge if params[:feedback][:image_purge] == '1'
+      purge = []
+      if params[:feedback].include? :images_attachments_attributes
+        params[:feedback][:images_attachments_attributes].each do |idx, param|
+          if param[:_destroy] == '1'
+            purge << param[:id]
+            param[:_destroy] = '0'
+          end
+        end
+      end
+      images = params[:feedback].include?(:images) ? params[:feedback].delete('images') : false
+      super do |format|
+        if resource.valid?
+          if params[:feedback][:images_purge] == '1'
+            resource.images.purge
+          elsif !purge.empty?
+            ActiveStorage::Attachment.find(purge).each(&:purge)
+          end
+          if images
+            resource.images.attach images
+          end
+          if !resource.images.empty? && (!purge.empty? || images)
+            resource.images.order(:index).each.with_index do |item, idx|
+              item.update_column :index, idx
+            end
+          end
+        end
       end
     end
   end

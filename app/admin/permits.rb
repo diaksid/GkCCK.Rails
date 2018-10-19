@@ -142,6 +142,12 @@ ActiveAdmin.register Permit do
 
 
   controller do
+    def create
+      super do |format|
+        redirect_to edit_admin_permit_path(resource) and return if resource.valid?
+      end
+    end
+
     def update
       purge = []
       if params[:permit].include? :images_attachments_attributes

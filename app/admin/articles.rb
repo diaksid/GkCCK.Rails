@@ -6,7 +6,7 @@ ActiveAdmin.register Article do
   permit_params :published, :published_at, :navigated,
                 :header, :annotation, :content, :partial,
                 :title, :keywords, :description, :canonical, :robots,
-                :image, :image_purge,
+                :image, :image_purge
 
 
   scope :all, default: true
